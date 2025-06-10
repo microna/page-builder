@@ -1,0 +1,79 @@
+// Container
+.container {
+    max-width: ($containerWidth + $containerPadding) + px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 $containerSidePadding + px;
+
+    @media (max-width: $breakpoint1450) {
+        max-width: 1200px;
+    }
+
+    @media (max-width: $breakpoint992) {
+        max-width: 970px;
+    }
+
+    @media (max-width: $breakpoint768) {
+        max-width: 740px;
+    }
+
+    @media (max-width: $breakpoint480) {
+        max-width: none;
+    }
+}
+
+// Body & Locked
+body {
+    font-family: $fontMain;
+    &.locked {
+        overflow: hidden;
+    }
+    // Dark mode styles
+    &.dark {
+        background: #242424;
+    }
+}
+
+// Animations
+// Fade
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.header-xl{
+    font-size: 64px;
+    letter-spacing: 64;
+    // line-height: 0;
+    font-weight: 700;
+    color: $colorTextPrimary;
+}
+
+.header-m{
+    font-size: 24px;
+    letter-spacing: 64;
+    // line-height: 0;
+    font-weight: 700;
+    color: $colorTextPrimary;
+}
+
+.text-bold-m{
+    font-weight: 700;
+}
+
+.text-bold-l{
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.text-m{
+    font-size: 16px;
+    letter-spacing: 24;
+    font-weight: 400;
+    color: $colorTextSecondary;
+}
