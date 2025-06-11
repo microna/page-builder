@@ -1,2 +1,11 @@
 .DS_Store
 node_modules/
+/.srv/* 
+.srv/
+srv/
+
+# Docker
+.docker/
+docker-compose.yaml
+.dockerignore
+*.log
