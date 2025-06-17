@@ -8,31 +8,79 @@
 </head>
 
 <body <?php body_class(); ?>>
+    <?php
+    // Simple loop for 'header' custom post type
+    $headers = new WP_Query(array(
+    'post_type' => 'header',
+    'posts_per_page' => -1, // Get all headers, or set to specific number
+    'post_status' => 'publish'
+    ));
 
-    <header class="header">
-        <div class="container">
+    if ($headers->have_posts()) :
+    while ($headers->have_posts()) : $headers->the_post();
+    ?>
+    <div class="header-item">
+        <h2><?php the_title(); ?></h2>
 
-            <!-- Logo -->
-            <div class="logo">
-                <a href="<?php echo home_url(); ?>">
-                    <?php if (has_custom_logo()) : ?>
-                    <?php the_custom_logo(); ?>
-                    <?php else : ?>
-                    <h1><?php bloginfo('name'); ?></h1>
-                    <?php endif; ?>
-                </a>
-            </div>
+        <?php
+            // Display ACF Flexible Content - header_sections
+            if (have_rows('header_sections')) :
+                while (have_rows('header_sections')) : the_row();
+                    $layout = get_row_layout();
+                    ?>
+        <?php
+                    // Use template parts for each header layout
+                    switch ($layout) {
+                        case 'header_1':
+                            set_query_var('section_data', get_row());
+                            get_template_part('template-parts/global-sections/header/header-1');
+                            break;
+                        
+                        case 'header_2':
+                            set_query_var('section_data', get_row());
+                            get_template_part('template-parts/global-sections/header/header-2');
+                            break;
+                        
+                        case 'header_3':
+                            set_query_var('section_data', get_row());
+                            get_template_part('template-parts/global-sections/header/header-3');
+                            break;
+                        
+                        case 'header_4':
+                            set_query_var('section_data', get_row());
+                            get_template_part('template-parts/global-sections/header/header-4');
+                            break;
+                        
+                        case 'header_5':
+                            set_query_var('section_data', get_row());
+                            get_template_part('template-parts/global-sections/header/header-5');
+                            break;
+                        
+                        case 'header_6':
+                            set_query_var('section_data', get_row());
+                            get_template_part('template-parts/global-sections/header/header-6');
+                            break;
+                        case 'header_7':
+                            set_query_var('section_data', get_row());
+                            get_template_part('template-parts/global-sections/header/header-7');
+                            break;
+                        
+                        default:
+                            // Fallback for any unhandled layouts
+                            echo '<div class="header-section-unknown">Layout "' . esc_html($layout) . '" not found</div>';
+                            break;
+                    }
+                    ?>
+        <?php
+                endwhile;
+            endif;
+            ?>
 
-
-
-            <!-- Navigation -->
-            <nav class="nav" id="nav-menu">
-                <?php wp_nav_menu(array(
-                'theme_location' => 'primary',
-                'container' => false,
-                'menu_class' => 'nav-list'
-            )); ?>
-            </nav>
-
-        </div>
-    </header>
+    </div>
+    <?php
+    endwhile;
+    wp_reset_postdata();
+else :
+    echo '<p>No headers found.</p>';
+endif;
+?>

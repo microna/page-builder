@@ -423,6 +423,10 @@
             align-items: center;
     padding: 20px 0;
   }
+
+  .menu-item a{
+    color: #555A65 !important;
+}
   
   .menu {
     display: -webkit-box;
