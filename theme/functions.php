@@ -63,6 +63,30 @@ function create_header_cpt() {
 }
 add_action('init', 'create_header_cpt');
 
+
+// Register Header CPT
+function create_footer_cpt() {
+    register_post_type('footer', array(
+        'labels' => array(
+            'name' => 'Footer',
+            'singular_name' => 'Footer',
+            'add_new_item' => 'Add New Footer',
+            'edit_item' => 'Edit Footer',
+        ),
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'supports' => array('title', 'editor', 'custom-fields'),
+        'menu_icon' => 'dashicons-editor-kitchensink',
+        'has_archive' => false,
+        'publicly_queryable' => false,
+        'exclude_from_search' => true,
+    ));
+}
+add_action('init', 'create_footer_cpt');
+
+
+
 // Register Navigation Menus
 function register_theme_menus() {
     register_nav_menus(array(
@@ -119,12 +143,12 @@ function sanitize_svg($file) {
 add_filter('wp_handle_upload_prefilter', 'sanitize_svg');
 
 // Register ACF Options Page
-if (function_exists('acf_add_options_page')) {
-    acf_add_options_page(array(
-        'page_title'    => 'Theme Settings',
-        'menu_title'    => 'Theme Settings',
-        'menu_slug'     => 'theme-settings',
-        'capability'    => 'edit_posts',
-        'redirect'      => false
-    ));
-}
+// if (function_exists('acf_add_options_page')) {
+//     acf_add_options_page(array(
+//         'page_title'    => 'Theme Settings',
+//         'menu_title'    => 'Theme Settings',
+//         'menu_slug'     => 'theme-settings',
+//         'capability'    => 'edit_posts',
+//         'redirect'      => false
+//     ));
+// }

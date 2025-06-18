@@ -20,7 +20,7 @@
     while ($headers->have_posts()) : $headers->the_post();
     ?>
     <div class="header-item">
-        <h2><?php the_title(); ?></h2>
+
 
         <?php
             // Display ACF Flexible Content - header_sections
