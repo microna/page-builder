@@ -1,0 +1,34 @@
+.cta{
+    margin-top: 100px;
+    padding: 100px 0;
+    background-color: $systemColor;
+    border-radius: 12px; 
+    &__wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }  
+    &__title{
+        text-align: center;
+        padding-bottom: 40px;
+
+    }
+    &__description{
+        text-align: center;
+        padding-bottom: 32px;
+    }
+    &__button{
+        display: block; // Make it block-level
+        margin: 0 auto; // This will work now
+        width: fit-content;
+    }
+    &__inner{
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        input{
+            width: 100%;   
+        }
+    }
+}
