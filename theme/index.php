@@ -149,8 +149,18 @@
                     set_query_var('section_data', get_row());
                     get_template_part('template-parts/flexible-content/cta/cta-1');
                     break;
-
-                
+                case 'cta_2': // This might be the actual layout name  
+                    set_query_var('section_data', get_row());
+                    get_template_part('template-parts/flexible-content/cta/cta-2');
+                    break;
+                case 'cta_3': // This might be the actual layout name  
+                    set_query_var('section_data', get_row());
+                    get_template_part('template-parts/flexible-content/cta/cta-3');
+                    break;
+                case 'cta_4': // This might be the actual layout name  
+                    set_query_var('section_data', get_row());
+                    get_template_part('template-parts/flexible-content/cta/cta-4');
+                    break;
 
                 default:
                     echo '<p>Unknown layout: ' . $layout . '</p>';
