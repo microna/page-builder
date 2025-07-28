@@ -4,19 +4,15 @@
     width: 100%;
     margin: 0 auto;
     padding: 0 $containerSidePadding + px;
-
     @media (max-width: $breakpoint1450) {
         max-width: 1200px;
     }
-
     @media (max-width: $breakpoint992) {
         max-width: 970px;
     }
-
     @media (max-width: $breakpoint768) {
         max-width: 740px;
     }
-
     @media (max-width: $breakpoint480) {
         max-width: none;
     }
@@ -40,47 +36,20 @@ body {
     0% {
         opacity: 0;
     }
-
     100% {
         opacity: 1;
     }
 }
 
-.header-xl{
-    font-size: 64px;
-    // line-height: 24px;
-    font-weight: 700;
-    color: $colorTextPrimary;
+section.hero,
+section.content-block,
+section.team {
+    min-height: 100vh;
+    padding: 100px 0;
 }
 
-.header-l{
-    font-size: 48px;
-    letter-spacing: 48;
-    line-height: 24px;
-    font-weight: 700;
-    color: $colorTextPrimary;
-}
-
-.header-m{
-    font-size: 24px;
-    line-height: 0;
-    line-height: 24px;
-    font-weight: 700;
-    color: $colorTextPrimary;
-}
-
-.text-bold-m{
-    font-weight: 700;
-}
-
-.text-bold-l{
-    font-size: 30px;
-    font-weight: 700;
-}
-
-.text-m{
-    font-size: 16px;
-    letter-spacing: 24;
-    font-weight: 400;
-    color: $colorTextSecondary;
+section.advantages,
+section.cta {
+    min-height: 50vh;
+    padding: 100px 0;
 }

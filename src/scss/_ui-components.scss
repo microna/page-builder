@@ -1,4 +1,4 @@
-.my-button-primary {
+.button-primary {
     display: inline-block;
     background-color: $brandColor;
     color: $systemColor;
@@ -16,7 +16,7 @@
     }
 }
 
-.my-button-secondary {
+.button-secondary {
     display: inline-block;
     background-color: transparent;
     color: $brandColor;
@@ -35,7 +35,7 @@
     }
 }
 
-.my-button-clear {
+.button-clear {
     display: inline-block;
     background-color: transparent;
     color: $brandColor;
