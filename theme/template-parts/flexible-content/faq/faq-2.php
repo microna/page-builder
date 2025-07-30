@@ -1,8 +1,8 @@
-<div class="faq">
+<section class="faq">
     <div class="container">
         <div class="faq-wrapper">
             <div class="faq__inner-title">
-                <h2 class="header-xl faq__title">Title is here</h2>
+                <h2 class="fs-1 fw-bold pb-3 text-left pb-5">Title is here</h2>
 
             </div>
             <div class="faq__inner">
@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     <div class="faq__item-content">
-                        <div class="content__text">Some random text here</div>
+                        <div class="fs-5">Some random text here</div>
                     </div>
                 </div>
 
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="faq__item-content">
-                        <div class="content__text">Some random text here</div>
+                        <div class="fs-5">Some random text here</div>
                     </div>
                 </div>
 
@@ -41,11 +41,11 @@
                         </div>
                     </div>
                     <div class="faq__item-content">
-                        <div class="content__text">Some random text here</div>
+                        <div class="fs-5">Some random text here</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
+    </div>
+</section>

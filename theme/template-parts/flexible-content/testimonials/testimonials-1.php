@@ -1,68 +1,65 @@
-<div class="testimonials">
+<section class="testimonials">
     <div class="container">
-        <h2 class="header-xl testimonials__title">Testimonials</h2>
-        <p class="text-m testimonials__description">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores ex nihil
-            omnis laudantium quisquam vel ab ipsum debitis tempore nemo?
+        <h2 class="fs-1 fw-bold pb-3 text-center pb-5 col-6 mx-auto">Testimonials</h2>
+        <p class="fs-5 pb-3 text-center col-6 mx-auto">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores ex nihil omnis laudantium quisquam vel ab
+            ipsum debitis tempore nemo?
         </p>
         <div class="testimonials__wrapper swiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="testimonials__item">
-                        <div class="testimonials__item-content">
+                <div class="swiper-slide bg-white p-3 rounded-3">
+                    <div class="col-10 ">
+                        <div class="d-flex gap-2 align-items-start ">
                             <img class="testimonials__item-content-img"
                                 src="<?php echo get_template_directory_uri(); ?>/assets/images/avatar.svg"
                                 alt="avatar" />
-                            <div class="testimonials__item-content-name-wrapper">
-                                <h5 class="testimonials__item-content-name">User Name</h5>
-                                <p class="testimonials__item-content-position">User Position</p>
+                            <div class=" ">
+                                <h5 class="fs-5 fw-bold ">User Name</h5>
+                                <p class="fs-6 text-muted ">User Position</p>
                             </div>
                         </div>
-                        <p class="testimonials__item-text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-                            neque pariatur debitis eos eveniet ipsam consequatur excepturi
-                            ipsum ab illo! Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Fugiat neque pariatur debitis eos eveniet ipsam consequatur
+                        <p class="fs-5 ">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque pariatur debitis eos
+                            eveniet ipsam consequatur excepturi ipsum ab illo! Lorem ipsum dolor sit amet consectetur
+                            adipisicing elit. Fugiat neque pariatur debitis eos eveniet ipsam consequatur
                             excepturi ipsum ab illo!
                         </p>
                     </div>
                 </div>
-                <div class="swiper-slide">
-                    <div class="testimonials__item">
-                        <div class="testimonials__item-content">
+                <div class="swiper-slide bg-white p-3 rounded-3 ">
+                    <div class="col-10 ">
+                        <div class="d-flex gap-2 align-items-start ">
                             <img class="testimonials__item-content-img"
                                 src="<?php echo get_template_directory_uri(); ?>/assets/images/avatar.svg"
                                 alt="avatar" />
-                            <div class="testimonials__item-content-name-wrapper">
-                                <h5 class="testimonials__item-content-name">User Name</h5>
-                                <p class="testimonials__item-content-position">User Position</p>
+                            <div class=" ">
+                                <h5 class="fs-5 fw-bold ">User Name</h5>
+                                <p class="fs-6 text-muted ">User Position</p>
                             </div>
                         </div>
-                        <p class="testimonials__item-text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-                            neque pariatur debitis eos eveniet ipsam consequatur excepturi
-                            ipsum ab illo! Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Fugiat neque pariatur debitis eos eveniet ipsam consequatur
+                        <p class="fs-5 ">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque pariatur debitis eos
+                            eveniet ipsam consequatur excepturi ipsum ab illo! Lorem ipsum dolor sit amet consectetur
+                            adipisicing elit. Fugiat neque pariatur debitis eos eveniet ipsam consequatur
                             excepturi ipsum ab illo!
                         </p>
                     </div>
                 </div>
-                <div class="swiper-slide">
-                    <div class="testimonials__item">
-                        <div class="testimonials__item-content">
+                <div class="swiper-slide bg-white p-3 rounded-3 ">
+                    <div class="col-10 ">
+                        <div class="d-flex gap-2 align-items-start ">
                             <img class="testimonials__item-content-img"
                                 src="<?php echo get_template_directory_uri(); ?>/assets/images/avatar.svg"
                                 alt="avatar" />
-                            <div class="testimonials__item-content-name-wrapper">
-                                <h5 class="testimonials__item-content-name">User Name</h5>
-                                <p class="testimonials__item-content-position">User Position</p>
+                            <div class=" ">
+                                <h5 class="fs-5 fw-bold ">User Name</h5>
+                                <p class="fs-6 text-muted ">User Position</p>
                             </div>
                         </div>
-                        <p class="testimonials__item-text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-                            neque pariatur debitis eos eveniet ipsam consequatur excepturi
-                            ipsum ab illo! Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Fugiat neque pariatur debitis eos eveniet ipsam consequatur
+                        <p class="fs-5">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque pariatur debitis eos
+                            eveniet ipsam consequatur excepturi ipsum ab illo! Lorem ipsum dolor sit amet consectetur
+                            adipisicing elit. Fugiat neque pariatur debitis eos eveniet ipsam consequatur
                             excepturi ipsum ab illo!
                         </p>
                     </div>
@@ -72,7 +69,7 @@
 
 
         </div>
-        <div class="swiper-button-next testimonials__button-next"></div>
-        <div class="swiper-button-prev testimonials__button-prev"></div>
+        <div class="swiper-button-next testimonials__button-next "></div>
+        <div class="swiper-button-prev testimonials__button-prev "></div>
     </div>
-</div>
+</section>

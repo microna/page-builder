@@ -1,88 +1,84 @@
-<div class="testimonials">
+<section class="testimonials">
     <div class="container">
-        <h2 class="header-xl testimonials__title">Testimonials</h2>
-        <p class="text-m testimonials__description">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores ex nihil
-            omnis laudantium quisquam vel ab ipsum debitis tempore nemo?
+        <h2 class="fs-1 fw-bold pb-3 text-center pb-5">Testimonials</h2>
+        <p class="fs-5 pb-3 text-center col-6 mx-auto">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores ex nihil omnis laudantium quisquam vel ab
+            ipsum debitis tempore nemo?
         </p>
         <div class="testimonials__wrapper swiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="testimonials__item">
-                        <div class="testimonials__item-content-center">
-                            <img class="testimonials__item-content-stars"
-                                src="<?php echo get_template_directory_uri(); ?>/assets/images/stars.svg" alt="stars" />
-                            <p class="testimonials__item-text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-                                neque pariatur debitis eos eveniet ipsam consequatur excepturi
-                                ipsum ab illo! Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Fugiat neque pariatur debitis eos eveniet
-                                ipsam consequatur excepturi ipsum ab illo!
+                <div class="swiper-slide bg-white p-3 rounded-3">
+                    <div class="col-11 mx-auto">
+                        <div class="d-flex flex-column align-items-center justify-content-center">
+                            <img class="testimonials__item-content-stars" src="../../img/stars.svg" alt="stars" />
+                            <p class="text-center pb-3">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque pariatur debitis
+                                eos eveniet ipsam consequatur excepturi ipsum ab illo! Lorem ipsum dolor sit amet
+                                consectetur adipisicing elit. Fugiat neque pariatur debitis eos eveniet ipsam
+                                consequatur
+                                excepturi ipsum ab illo!
                             </p>
-                            <img class="testimonials__item-content-avatar"
-                                src="<?php echo get_template_directory_uri(); ?>/assets/images/avatar.svg"
-                                alt="avatar" />
-                            <h5 class="testimonials__item-content-name">User Name</h5>
+                            <img class="" src="../../img/Avatar.svg" alt="avatar" />
+                            <h5 class="fs-5 fw-bold">User Name</h5>
                         </div>
                     </div>
                 </div>
 
-                <div class="swiper-slide">
-                    <div class="testimonials__item">
-                        <div class="testimonials__item-content-center">
-                            <img class="testimonials__item-content-stars"
-                                src="<?php echo get_template_directory_uri(); ?>/assets/images/stars.svg" alt="stars" />
-                            <p class="testimonials__item-text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-                                neque pariatur debitis eos eveniet ipsam consequatur excepturi
-                                ipsum ab illo! Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Fugiat neque pariatur debitis eos eveniet
-                                ipsam consequatur excepturi ipsum ab illo!
+
+
+
+                <div class="swiper-slide bg-white p-3 rounded-3">
+                    <div class="col-11 mx-auto">
+                        <div class="d-flex flex-column align-items-center justify-content-center">
+                            <img class="testimonials__item-content-stars" src="../../img/stars.svg" alt="stars" />
+                            <p class="text-center pb-3">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque pariatur debitis
+                                eos eveniet ipsam consequatur excepturi ipsum ab illo! Lorem ipsum dolor sit amet
+                                consectetur adipisicing elit. Fugiat neque pariatur debitis eos eveniet ipsam
+                                consequatur
+                                excepturi ipsum ab illo!
                             </p>
-                            <img class="testimonials__item-content-avatar"
-                                src="<?php echo get_template_directory_uri(); ?>/assets/images/avatar.svg"
-                                alt="avatar" />
-                            <h5 class="testimonials__item-content-name">User Name</h5>
+                            <img class="" src="<?php echo get_template_directory_uri(); ?>/assets/images/stars.svg"
+                                alt="stars" /> alt="avatar" />
+                            <h5 class="fs-5 fw-bold">User Name</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide bg-white p-3 rounded-3">
+                    <div class="col-11 mx-auto">
+                        <div class="d-flex flex-column align-items-center justify-content-center">
+                            <img class="testimonials__item-content-stars" src="../../img/stars.svg" alt="stars" />
+                            <p class="text-center pb-3">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque pariatur debitis
+                                eos eveniet ipsam consequatur excepturi ipsum ab illo! Lorem ipsum dolor sit amet
+                                consectetur adipisicing elit. Fugiat neque pariatur debitis eos eveniet ipsam
+                                consequatur
+                                excepturi ipsum ab illo!
+                            </p>
+                            <img class="" src="<?php echo get_template_directory_uri(); ?>/assets/images/stars.svg"
+                                alt="stars" /> alt="avatar" />
+                            <h5 class="fs-5 fw-bold">User Name</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide bg-white p-3 rounded-3">
+                    <div class="col-11 mx-auto">
+                        <div class="d-flex flex-column align-items-center justify-content-center">
+                            <img class="testimonials__item-content-stars" src="../../img/stars.svg" alt="stars" />
+                            <p class="text-center pb-3">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque pariatur debitis
+                                eos eveniet ipsam consequatur excepturi ipsum ab illo! Lorem ipsum dolor sit amet
+                                consectetur adipisicing elit. Fugiat neque pariatur debitis eos eveniet ipsam
+                                consequatur
+                                excepturi ipsum ab illo!
+                            </p>
+                            <img class="" src="<?php echo get_template_directory_uri(); ?>/assets/images/stars.svg"
+                                alt="stars" /> alt="avatar" />
+                            <h5 class="fs-5 fw-bold">User Name</h5>
                         </div>
                     </div>
                 </div>
 
-                <!-- Add more testimonials as needed -->
-                <div class="swiper-slide">
-                    <div class="testimonials__item">
-                        <div class="testimonials__item-content-center">
-                            <img class="testimonials__item-content-stars"
-                                src="<?php echo get_template_directory_uri(); ?>/assets/images/stars.svg" alt="stars" />
-                            <p class="testimonials__item-text">
-                                Exceptional service and outstanding results! The team delivered
-                                beyond our expectations. Highly recommended for anyone looking
-                                for quality and professionalism.
-                            </p>
-                            <img class="testimonials__item-content-avatar"
-                                src="<?php echo get_template_directory_uri(); ?>/assets/images/avatar.svg"
-                                alt="avatar" />
-                            <h5 class="testimonials__item-content-name">Sarah Johnson</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="testimonials__item">
-                        <div class="testimonials__item-content-center">
-                            <img class="testimonials__item-content-stars"
-                                src="<?php echo get_template_directory_uri(); ?>/assets/images/stars.svg" alt="stars" />
-                            <p class="testimonials__item-text">
-                                The attention to detail and customer focus is remarkable. They
-                                truly understand our needs and deliver solutions that work
-                                perfectly.
-                            </p>
-                            <img class="testimonials__item-content-avatar"
-                                src="<?php echo get_template_directory_uri(); ?>/assets/images/avatar.svg"
-                                alt="avatar" />
-                            <h5 class="testimonials__item-content-name">Mike Chen</h5>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- Navigation arrows -->
@@ -92,4 +88,4 @@
         <div class="swiper-button-next testimonials__button-next"></div>
         <div class="swiper-button-prev testimonials__button-prev"></div>
     </div>
-</div>
+</section>

@@ -1,15 +1,14 @@
-<div class="cta">
+<section class="cta">
     <div class="container">
-        <div class="cta__wrapper">
-            <div class="cta__inner-column">
-                <h2 class="header-xl cta__title">Title is here</h2>
-            </div>
+        <div class="d-flex flex-column align-items-center justify-content-center">
+            <h2 class="fs-1 fw-bold pb-3">Title is here</h2>
+
 
             <div class="cta__inner-column">
-                <p class="text-m cta__description">
+                <p class="fs-5 pb-3 text-center">
                     Description - short description of the text
                 </p>
-                <form class="cta__inner">
+                <form class="d-flex gap-2 w-120">
                     <div class="input-with-icon">
                         <input class="input-text" type="text" placeholder="Name" />
                     </div>
@@ -18,4 +17,4 @@
             </div>
         </div>
     </div>
-</div>
+</section>

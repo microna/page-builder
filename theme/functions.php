@@ -13,6 +13,12 @@ function enqueue_theme_styles() {
             array(),
             '1.0.0'
         );
+        wp_enqueue_style(
+            'bootstrap-css',
+            get_template_directory_uri() . '/assets/css/bootstrap.min.css',
+            array(),
+            '1.0.0'
+        );
 }
 add_action('wp_enqueue_scripts', 'enqueue_theme_styles');
 

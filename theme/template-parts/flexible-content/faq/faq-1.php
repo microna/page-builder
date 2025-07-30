@@ -1,7 +1,7 @@
-<div class="faq">
+<section class="faq">
     <div class="container">
-        <h2 class="header-xl faq__title">Title is here</h2>
-        <p class="text-m faq__description">
+        <h2 class="fs-1 fw-bold pb-3 text-center pb-5">Title is here</h2>
+        <p class="fs-5 col-6 text-center mx-auto">
             Description - short description of the text. Description - short description of the text Description - short
             description of the text
         </p>
@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div class="faq__item-content">
-                    <div class="content__text">Some random text here</div>
+                    <div class="fs-5">Some random text here</div>
                 </div>
             </div>
 
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="faq__item-content">
-                    <div class="content__text">Some random text here</div>
+                    <div class="fs-5">Some random text here</div>
                 </div>
             </div>
 
@@ -38,10 +38,10 @@
                     </div>
                 </div>
                 <div class="faq__item-content">
-                    <div class="content__text">Some random text here</div>
+                    <div class="fs-5">Some random text here</div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
+    </div>
+</section>
