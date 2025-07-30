@@ -20,7 +20,7 @@ services:
     links:
       - mysql
     ports:
-      - 8000:80
+      - 9000:80
     restart: always
     environment:
       WORDPRES_DB_HOST: mysql:3306
