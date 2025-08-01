@@ -20,7 +20,7 @@ $image = get_sub_field('image');
                 </div>
             </div>
             <div class="col-6">
-                <img style="background-image: url(<?php echo $image; ?>);" alt="hero-image" class="w-100">
+                <img src="<?php echo $image; ?>" alt="hero-image" class="w-100">
             </div>
         </div>
     </div>
