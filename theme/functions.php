@@ -1,5 +1,7 @@
 <?php
 
+include 'assets/inc/redux-configuration.php';
+
 function enqueue_theme_styles() {
         wp_enqueue_style(
             'theme-style',
