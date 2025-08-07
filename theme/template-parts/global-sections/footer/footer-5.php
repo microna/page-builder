@@ -1,15 +1,18 @@
 <footer>
     <div class="container">
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="col-4">
-                <a href="<?php echo esc_url(home_url('/')); ?>">
-                    <img class="pb-5"
-                        src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/logo.png'); ?>"
-                        alt="<?php echo esc_attr(get_bloginfo('name')); ?>" />
+        <div class="d-flex justify-content-between align-items-start">
+            <div class="col-3">
+
+                <a class="footer-logo" href="<?php echo esc_url(home_url('/')); ?>">
+                    <?php 
+                    $redux_logo = page_builder_simple_option('logo');
+                    $logo_url = !empty($redux_logo['url']) ? $redux_logo['url'] : get_template_directory_uri() . '/assets/images/logo.png';
+                    ?>
+                    <img src="<?php echo esc_url($logo_url); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" />
                 </a>
-                <p class="fs-5">&copy; <span id="current-year">
+                <p class="fs-5 mt-3">&copy; <span id="current-year">
                         <?php echo date('Y'); ?></span> All rights reserved</p>
-                <div class="pb-5 d-flex justify-content-between align-items-start col-3">
+                <div class="pb-5 mt-3 d-flex justify-content-between align-items-start col-3">
                     <a href=" #">
                         <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/twitter.svg'); ?>"
                             alt="twitter" />
@@ -26,9 +29,9 @@
                 </div>
             </div>
             <div class="col-6 text-end">
-                <h4 class="fs-2 text-start">Title has its own meaning</h4>
-                <p class="fs-5 text-start">Short description of the text</p>
-                <div class="footer__content-holder">
+                <h4 class="fs-2 text-start mt-3">Title has its own meaning</h4>
+                <p class="fs-5 text-start mt-3">Short description of the text</p>
+                <div class="footer__content-holder mt-3">
                     <div class="input-with-icon">
                         <input id="input-text" class="input-text" placeholder="Input text">
                     </div>

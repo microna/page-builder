@@ -2,11 +2,15 @@
     <div class="container">
 
         <div class="d-flex flex-column align-items-center col-6 align-items-center m-auto">
-            <a href="<?php echo esc_url(home_url('/')); ?>">
-                <img class="pb-5" src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/logo.png'); ?>"
+
+            <a class="footer-logo" href="<?php echo esc_url(home_url('/')); ?>">
+                <?php 
+                    $redux_logo = page_builder_simple_option('logo');
+                    $logo_url = !empty($redux_logo['url']) ? $redux_logo['url'] : get_template_directory_uri() . '/assets/images/logo.png';
+                    ?>
+                <img class="mb-3" src="<?php echo esc_url($logo_url); ?>"
                     alt="<?php echo esc_attr(get_bloginfo('name')); ?>" />
             </a>
-
             <?php wp_nav_menu(array(
                         'theme_location' => 'footer',
                         'container' => false,

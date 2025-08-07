@@ -1,6 +1,6 @@
 <?php
 
-include 'assets/inc/redux-configuration.php';
+include 'assets/inc/redux-config.php';
 
 function enqueue_theme_styles() {
         wp_enqueue_style(
@@ -168,3 +168,121 @@ function add_class_to_nav_menu_links($atts, $item, $args) {
     return $atts;
 }
 add_filter('nav_menu_link_attributes', 'add_class_to_nav_menu_links', 10, 3);
+
+/**
+ * Generate dynamic CSS from Redux colors
+ */
+function generate_redux_colors_css() {
+    $primary_color = page_builder_simple_option('primary_color', '#007cba');
+    $secondary_color = page_builder_simple_option('secondary_color', '#28a745');
+    
+    $css = "
+    <style type='text/css'>
+        :root {
+            --primary-color: {$primary_color};
+            --secondary-color: {$secondary_color};
+        }
+        .button-primary {
+            background-color: {$primary_color} !important;
+            border-color: {$primary_color} !important;
+            color: #fff !important;
+        }
+        .button-secondary{
+         color: {$secondary_color} !important;
+         border-color: {$secondary_color} !important;
+        }
+        .button-primary:hover,
+        .button-secondary:hover{
+        opacity: 0.7;    
+        }
+    </style>
+    ";
+    
+    echo $css;
+}
+add_action('wp_head', 'generate_redux_colors_css');
+
+/**
+ * Load Google Fonts from Redux Typography settings
+ */
+function load_redux_google_fonts() {
+    $body_typography = page_builder_simple_option('body_typography');
+    $heading_typography = page_builder_simple_option('heading_typography');
+    
+    $google_fonts = array();
+    
+    if (!empty($body_typography['google']) && !empty($body_typography['font-family'])) {
+        $google_fonts[] = $body_typography['font-family'] . ':' . $body_typography['font-weight'];
+    }
+    
+    if (!empty($heading_typography['google']) && !empty($heading_typography['font-family'])) {
+        $google_fonts[] = $heading_typography['font-family'] . ':' . $heading_typography['font-weight'];
+    }
+    $google_fonts = array_unique($google_fonts);
+    
+    if (!empty($google_fonts)) {
+        $fonts_url = 'https://fonts.googleapis.com/css2?family=' . implode('&family=', $google_fonts) . '&display=swap';
+        wp_enqueue_style('redux-google-fonts', $fonts_url, array(), null);
+    }
+    
+    if (!empty($custom_fonts) && is_array($custom_fonts)) {
+        foreach ($custom_fonts as $index => $font_url) {
+            if (!empty($font_url)) {
+                wp_enqueue_style('custom-google-font-' . $index, $font_url, array(), null);
+            }
+        }
+    }
+}
+add_action('wp_enqueue_scripts', 'load_redux_google_fonts');
+
+/**
+ * Generate typography CSS from Redux settings
+ */
+function generate_redux_typography_css() {
+    $body_typography = page_builder_simple_option('body_typography');
+    $heading_typography = page_builder_simple_option('heading_typography');
+    
+    $css = "<style type='text/css'>";
+    
+    // Body Typography
+    if (!empty($body_typography)) {
+        $css .= "body {";
+        if (!empty($body_typography['font-family'])) {
+            $css .= "font-family: '{$body_typography['font-family']}', sans-serif;";
+        }
+        if (!empty($body_typography['font-size'])) {
+            $css .= "font-size: {$body_typography['font-size']};";
+        }
+        if (!empty($body_typography['font-weight'])) {
+            $css .= "font-weight: {$body_typography['font-weight']};";
+        }
+        if (!empty($body_typography['line-height'])) {
+            $css .= "line-height: {$body_typography['line-height']};";
+        }
+        if (!empty($body_typography['color'])) {
+            $css .= "color: {$body_typography['color']};";
+        }
+        $css .= "}";
+    }
+    
+    // Heading Typography
+    if (!empty($heading_typography)) {
+        $css .= "h1, h2, h3, h4, h5, h6 {";
+        if (!empty($heading_typography['font-family'])) {
+            $css .= "font-family: '{$heading_typography['font-family']}', sans-serif;";
+        }
+        if (!empty($heading_typography['font-weight'])) {
+            $css .= "font-weight: {$heading_typography['font-weight']};";
+        }
+        if (!empty($heading_typography['color'])) {
+            $css .= "color: {$heading_typography['color']};";
+        }
+        $css .= "}";
+    }
+    
+    
+    $css .= "</style>";
+    
+    echo $css;
+}
+add_action('wp_head', 'generate_redux_typography_css');
