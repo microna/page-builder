@@ -9,8 +9,8 @@ $image = get_sub_field('image');
 ?>
 <section class="hero">
     <div class="container">
-        <div class="d-flex justify-content-center align-items-center gap-5">
-            <div class="col-6 text-start">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-5 col-lg-6 order-md-1">
                 <h1 class="fs-1 fw-bold pb-3"><?php echo $text; ?></h1>
                 <p class="fs-5 pb-3"><?php echo $description = get_sub_field('description');?></p>
                 <div class="d-flex gap-3">
@@ -19,7 +19,7 @@ $image = get_sub_field('image');
 
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-12 col-md-7 col-lg-6 order-md-2 aos-init aos-animate">
                 <img src="<?php echo $image; ?>" alt="hero-image" class="w-100">
             </div>
         </div>

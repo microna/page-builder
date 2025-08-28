@@ -202,7 +202,7 @@ section.cta {
   display: inline-block;
   background-color: #2055E5;
   color: #F7F8FA;
-  padding: 14px 60px;
+  padding: 0.875rem 3.75rem;
   line-height: 24px;
   font-weight: 600;
   font-size: 16px;
@@ -483,9 +483,6 @@ section.cta {
   background-color: transparent;
 }
 
-.faq {
-  padding: 100px 0;
-}
 
 .faq__title {
   padding-bottom: 40px;
