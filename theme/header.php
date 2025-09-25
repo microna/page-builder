@@ -8,7 +8,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-    <?php
+    <!-- <?php
     // Simple loop for 'header' custom post type
     $headers = new WP_Query(array(
     'post_type' => 'header',
@@ -83,4 +83,4 @@
 else :
     echo '<p>No headers found.</p>';
 endif;
-?>
+?> -->

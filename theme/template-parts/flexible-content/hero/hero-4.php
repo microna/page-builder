@@ -1,4 +1,5 @@
 <?php
+// Get ACF fields
 $text = get_sub_field('title');
 $description = get_sub_field('description');
 $button_text_primary = get_sub_field('primary_button_text');
@@ -6,23 +7,70 @@ $button_url_primary = get_sub_field('primary_button_link');
 $button_text_secondary = get_sub_field('secondary_button_text');
 $button_url_secondary = get_sub_field('secondary_button_link');
 $image = get_sub_field('image');
+
+// Handle ACF image field (can be array or URL)
+$image_url = '';
+$image_alt = '';
+
+if ($image) {
+    if (is_array($image)) {
+        $image_url = $image['url'] ?? '';
+        $image_alt = $image['alt'] ?? $text ?? 'Hero image';
+    } else {
+        $image_url = $image;
+        $image_alt = $text ?? 'Hero image';
+    }
+}
 ?>
-<section class="hero">
-    <div class="container">
+
+<section id="hero" style="min-height: 100dvh;" class="position-relative min-vh-100 d-flex align-items-center">
+    <div class="container ">
         <div class="row align-items-center">
-            <div class="col-12 col-md-5 col-lg-6 order-md-1">
-                <h1 class="fs-1 fw-bold pb-3"><?php echo $text; ?></h1>
-                <p class="fs-5 pb-3"><?php echo $description = get_sub_field('description');?></p>
-                <div class="d-flex gap-3">
-                    <a href="<?php echo $button_url_primary ?>"
-                        class="button-primary"><?php echo $button_text_primary;?></a>
+
+            <div class="col-12 col-lg-6 order-2 order-lg-1 text-center text-lg-start">
+
+                <?php if ($text): ?>
+                <h1 class="display-4 display-md-3 display-lg-2 fw-bold mb-3 mb-md-4">
+                    <?php echo esc_html($text); ?>
+                </h1>
+                <?php endif; ?>
+
+                <?php if ($description): ?>
+                <p class="fs-5 fs-md-5 fs-lg-4 mb-4 mb-md-5 text-muted lh-base">
+                    <?php echo esc_html($description); ?>
+                </p>
+                <?php endif; ?>
+
+                <?php if ($button_text_primary || $button_text_secondary): ?>
+                <div
+                    class="d-flex flex-column flex-sm-row gap-3 align-items-center align-sm-items-start align-lg-items-start justify-content-center justify-content-lg-start">
+
+                    <?php if ($button_text_primary && $button_url_primary): ?>
+                    <a href="<?php echo esc_url($button_url_primary); ?>" class="button-primary" role="button">
+                        <?php echo esc_html($button_text_primary); ?>
+                    </a>
+                    <?php endif; ?>
+
+                    <?php if ($button_text_secondary && $button_url_secondary): ?>
+                    <a href="<?php echo esc_url($button_url_secondary); ?>" class="button-secondary" role="button">
+                        <?php echo esc_html($button_text_secondary); ?>
+                    </a>
+                    <?php endif; ?>
 
                 </div>
+                <?php endif; ?>
+
             </div>
-            <div class="col-12 col-md-7 col-lg-6 order-md-2 aos-init aos-animate">
-                <img src="<?php echo $image; ?>" alt="hero-image" class="w-100">
+
+            <!-- Image Column -->
+            <?php if ($image_url): ?>
+            <div class="col-12 col-lg-6 order-1 order-lg-2">
+                <div class="hero-image-container position-relative overflow-hidden ">
+                    <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($image_alt); ?>"
+                        class="img-fluid w-100 hero-image" loading="lazy" </div>
+                </div>
+                <?php endif; ?>
+
             </div>
         </div>
-    </div>
-    </div>
 </section>

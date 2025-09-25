@@ -116,8 +116,7 @@ body.dark {
 section.hero,
 section.content-block,
 section.team {
-  min-height: 100vh;
-  padding: 100px 0;
+
 }
 
 section.advantages,
