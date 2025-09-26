@@ -27,7 +27,7 @@ if ($image) {
     <div class=" container">
 
         <div class="row justify-content-center mb-5">
-            <div class="col-12 col-sm-10 col-md-8 col-lg-6 text-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6 text-center pb-4 pb-lg-0">
 
                 <?php if ($text): ?>
                 <h1 class="display-4 display-md-3 display-lg-2 fw-bold mb-3 mb-md-4">
@@ -36,7 +36,7 @@ if ($image) {
                 <?php endif; ?>
 
                 <?php if ($description): ?>
-                <p class="fs-5 fs-md-5 lead mb-4 mb-md-5 text-muted">
+                <p class="fs-5 fs-md-5 fs-lg-4 mb-4 mb-md-5 text-muted lh-base">
                     <?php echo esc_html($description); ?>
                 </p>
                 <?php endif; ?>

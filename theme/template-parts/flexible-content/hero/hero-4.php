@@ -27,7 +27,7 @@ if ($image) {
     <div class="container ">
         <div class="row align-items-center">
 
-            <div class="col-12 col-lg-6 order-2 order-lg-1 text-center text-lg-start">
+            <div class="col-12 col-lg-6 order-1 order-lg-1 text-center text-lg-start pb-4 pb-lg-0">
 
                 <?php if ($text): ?>
                 <h1 class="display-4 display-md-3 display-lg-2 fw-bold mb-3 mb-md-4">
@@ -43,7 +43,7 @@ if ($image) {
 
                 <?php if ($button_text_primary || $button_text_secondary): ?>
                 <div
-                    class="d-flex flex-column flex-sm-row gap-3 align-items-center align-sm-items-start align-lg-items-start justify-content-center justify-content-lg-start">
+                    class="d-flex flex-column flex-sm-row gap-3 align-items-center align-sm-items-start align-lg-items-start justify-content-center justify-content-lg-start ">
 
                     <?php if ($button_text_primary && $button_url_primary): ?>
                     <a href="<?php echo esc_url($button_url_primary); ?>" class="button-primary" role="button">
@@ -64,7 +64,7 @@ if ($image) {
 
             <!-- Image Column -->
             <?php if ($image_url): ?>
-            <div class="col-12 col-lg-6 order-1 order-lg-2">
+            <div class="col-12 col-lg-6 order-2 order-lg-2">
                 <div class="hero-image-container position-relative overflow-hidden ">
                     <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($image_alt); ?>"
                         class="img-fluid w-100 hero-image" loading="lazy" </div>
