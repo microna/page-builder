@@ -1,91 +1,158 @@
-<section class="testimonials">
+<?php
+// Get ACF fields
+$section_title = get_sub_field('testimonials_title') ?: 'Testimonials';
+$section_description = get_sub_field('testimonials_description') ?: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores ex nihil omnis laudantium quisquam vel ab ipsum debitis tempore nemo?';
+
+// Testimonials data (you can use ACF repeater)
+$testimonials = [
+    [
+        'stars_image' => get_sub_field('testimonial_1_stars') ?: get_template_directory_uri() . '/assets/images/stars.svg',
+        'avatar' => get_sub_field('testimonial_1_avatar') ?: get_template_directory_uri() . '/assets/images/avatar.svg',
+        'name' => get_sub_field('testimonial_1_name') ?: 'User Name',
+        'content' => get_sub_field('testimonial_1_content') ?: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque pariatur debitis eos eveniet ipsam consequatur excepturi ipsum ab illo! Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque pariatur debitis eos eveniet ipsam consequatur excepturi ipsum ab illo!'
+    ],
+    [
+        'stars_image' => get_sub_field('testimonial_2_stars') ?: get_template_directory_uri() . '/assets/images/stars.svg',
+        'avatar' => get_sub_field('testimonial_2_avatar') ?: get_template_directory_uri() . '/assets/images/avatar.svg',
+        'name' => get_sub_field('testimonial_2_name') ?: 'User Name',
+        'content' => get_sub_field('testimonial_2_content') ?: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque pariatur debitis eos eveniet ipsam consequatur excepturi ipsum ab illo! Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque pariatur debitis eos eveniet ipsam consequatur excepturi ipsum ab illo!'
+    ],
+    [
+        'stars_image' => get_sub_field('testimonial_3_stars') ?: get_template_directory_uri() . '/assets/images/stars.svg',
+        'avatar' => get_sub_field('testimonial_3_avatar') ?: get_template_directory_uri() . '/assets/images/avatar.svg',
+        'name' => get_sub_field('testimonial_3_name') ?: 'User Name',
+        'content' => get_sub_field('testimonial_3_content') ?: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque pariatur debitis eos eveniet ipsam consequatur excepturi ipsum ab illo! Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque pariatur debitis eos eveniet ipsam consequatur excepturi ipsum ab illo!'
+    ],
+    [
+        'stars_image' => get_sub_field('testimonial_4_stars') ?: get_template_directory_uri() . '/assets/images/stars.svg',
+        'avatar' => get_sub_field('testimonial_4_avatar') ?: get_template_directory_uri() . '/assets/images/avatar.svg',
+        'name' => get_sub_field('testimonial_4_name') ?: 'User Name',
+        'content' => get_sub_field('testimonial_4_content') ?: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque pariatur debitis eos eveniet ipsam consequatur excepturi ipsum ab illo! Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque pariatur debitis eos eveniet ipsam consequatur excepturi ipsum ab illo!'
+    ]
+];
+
+// Helper to get image URL - unique name
+if (!function_exists('get_testimonials_centered_img_url')) {
+    function get_testimonials_centered_img_url($img) {
+        if (is_array($img) && isset($img['url'])) {
+            return $img['url'];
+        }
+        return $img;
+    }
+}
+?>
+
+<section class="testimonials py-5">
     <div class="container">
-        <h2 class="fs-1 fw-bold pb-3 text-center pb-5">Testimonials</h2>
-        <p class="fs-5 pb-3 text-center col-6 mx-auto">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores ex nihil omnis laudantium quisquam vel ab
-            ipsum debitis tempore nemo?
-        </p>
-        <div class="testimonials__wrapper swiper">
+
+        <!-- Section Header -->
+        <div class="row justify-content-center">
+            <div class="col-12 text-center mb-5">
+                <h2 class="display-5 display-md-4 fw-bold mb-3">
+                    <?php echo esc_html($section_title); ?>
+                </h2>
+            </div>
+            <div class="col-12 col-md-10 col-lg-6 text-center mb-5">
+                <p class="fs-6 fs-md-5 lead text-muted lh-base">
+                    <?php echo esc_html($section_description); ?>
+                </p>
+            </div>
+        </div>
+
+        <!-- Testimonials Swiper -->
+        <div class="testimonials-wrapper swiper position-relative">
             <div class="swiper-wrapper">
-                <div class="swiper-slide bg-white p-3 rounded-3">
-                    <div class="col-11 mx-auto">
-                        <div class="d-flex flex-column align-items-center justify-content-center">
-                            <img class="testimonials__item-content-stars" src="../../img/stars.svg" alt="stars" />
-                            <p class="text-center pb-3">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque pariatur debitis
-                                eos eveniet ipsam consequatur excepturi ipsum ab illo! Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Fugiat neque pariatur debitis eos eveniet ipsam
-                                consequatur
-                                excepturi ipsum ab illo!
+
+                <?php foreach ($testimonials as $index => $testimonial): 
+                    $stars_url = get_testimonials_centered_img_url($testimonial['stars_image']);
+                    $avatar_url = get_testimonials_centered_img_url($testimonial['avatar']);
+                ?>
+
+                <!-- Testimonial Slide -->
+                <div class="swiper-slide">
+                    <div class="testimonial-card bg-white p-4 p-md-5  h-100">
+                        <div
+                            class="testimonial-content d-flex flex-column align-items-center justify-content-center text-center">
+
+                            <!-- Stars Rating -->
+                            <?php if (!empty($stars_url)): ?>
+                            <div class="testimonial-stars mb-3">
+                                <img src="<?php echo esc_url($stars_url); ?>" alt="5 star rating"
+                                    style="height: 24px; width: auto;" />
+                            </div>
+                            <?php endif; ?>
+
+                            <!-- Testimonial Text -->
+                            <p class="testimonial-text fs-6 lh-base text-muted mb-4">
+                                <?php echo esc_html($testimonial['content']); ?>
                             </p>
-                            <img class="" src="../../img/Avatar.svg" alt="avatar" />
-                            <h5 class="fs-5 fw-bold">User Name</h5>
+
+                            <!-- User Avatar -->
+                            <?php if (!empty($avatar_url)): ?>
+                            <div class="testimonial-avatar mb-3">
+                                <img src="<?php echo esc_url($avatar_url); ?>"
+                                    alt="<?php echo esc_attr($testimonial['name']); ?>" class="rounded-circle"
+                                    style="width: 60px; height: 60px; object-fit: cover;" />
+                            </div>
+                            <?php endif; ?>
+
+                            <!-- User Name -->
+                            <h5 class="fs-5 fw-bold mb-0">
+                                <?php echo esc_html($testimonial['name']); ?>
+                            </h5>
+
                         </div>
                     </div>
                 </div>
 
-
-
-
-                <div class="swiper-slide bg-white p-3 rounded-3">
-                    <div class="col-11 mx-auto">
-                        <div class="d-flex flex-column align-items-center justify-content-center">
-                            <img class="testimonials__item-content-stars" src="../../img/stars.svg" alt="stars" />
-                            <p class="text-center pb-3">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque pariatur debitis
-                                eos eveniet ipsam consequatur excepturi ipsum ab illo! Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Fugiat neque pariatur debitis eos eveniet ipsam
-                                consequatur
-                                excepturi ipsum ab illo!
-                            </p>
-                            <img class="" src="<?php echo get_template_directory_uri(); ?>/assets/images/stars.svg"
-                                alt="stars" /> alt="avatar" />
-                            <h5 class="fs-5 fw-bold">User Name</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide bg-white p-3 rounded-3">
-                    <div class="col-11 mx-auto">
-                        <div class="d-flex flex-column align-items-center justify-content-center">
-                            <img class="testimonials__item-content-stars" src="../../img/stars.svg" alt="stars" />
-                            <p class="text-center pb-3">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque pariatur debitis
-                                eos eveniet ipsam consequatur excepturi ipsum ab illo! Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Fugiat neque pariatur debitis eos eveniet ipsam
-                                consequatur
-                                excepturi ipsum ab illo!
-                            </p>
-                            <img class="" src="<?php echo get_template_directory_uri(); ?>/assets/images/stars.svg"
-                                alt="stars" /> alt="avatar" />
-                            <h5 class="fs-5 fw-bold">User Name</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide bg-white p-3 rounded-3">
-                    <div class="col-11 mx-auto">
-                        <div class="d-flex flex-column align-items-center justify-content-center">
-                            <img class="testimonials__item-content-stars" src="../../img/stars.svg" alt="stars" />
-                            <p class="text-center pb-3">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque pariatur debitis
-                                eos eveniet ipsam consequatur excepturi ipsum ab illo! Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Fugiat neque pariatur debitis eos eveniet ipsam
-                                consequatur
-                                excepturi ipsum ab illo!
-                            </p>
-                            <img class="" src="<?php echo get_template_directory_uri(); ?>/assets/images/stars.svg"
-                                alt="stars" /> alt="avatar" />
-                            <h5 class="fs-5 fw-bold">User Name</h5>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
 
             </div>
 
-            <!-- Navigation arrows -->
+            <!-- Navigation Arrows -->
+            <div class="swiper-button-next testimonials-button-next"></div>
+            <div class="swiper-button-prev testimonials-button-prev"></div>
 
-            <!-- Pagination dots -->
+            <!-- Pagination -->
+            <div class="swiper-pagination testimonials-pagination mt-4"></div>
         </div>
-        <div class="swiper-button-next testimonials__button-next"></div>
-        <div class="swiper-button-prev testimonials__button-prev"></div>
+
     </div>
 </section>
+
+
+
+<script>
+// Initialize Swiper (make sure Swiper JS is loaded on your page)
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof Swiper !== 'undefined') {
+        const testimonialsSwiper = new Swiper('.testimonials-wrapper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.testimonials-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.testimonials-button-next',
+                prevEl: '.testimonials-button-prev',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                992: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                }
+            }
+        });
+    }
+});
+</script>
