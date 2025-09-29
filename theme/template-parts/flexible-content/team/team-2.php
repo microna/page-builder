@@ -1,32 +1,96 @@
 <?php
+$section_title = get_sub_field('section_title') ?: 'Title is here';
 $image = get_sub_field('image');
+
+$member_1_image = get_sub_field('member_1_image') ?: $image;
+$member_1_name = get_sub_field('member_1_name') ?: 'Title is here';
+$member_1_description = get_sub_field('member_1_description') ?: 'Description - short description of the text';
+
+$member_2_image = get_sub_field('member_2_image') ?: $image;
+$member_2_name = get_sub_field('member_2_name') ?: 'Title is here';
+$member_2_description = get_sub_field('member_2_description') ?: 'Description - short description of the text';
+
+$member_3_image = get_sub_field('member_3_image') ?: $image;
+$member_3_name = get_sub_field('member_3_name') ?: 'Title is here';
+$member_3_description = get_sub_field('member_3_description') ?: 'Description - short description of the text';
+
+if (!function_exists('get_team_img_url')) {
+    function get_team_img_url($img) {
+        if (is_array($img) && isset($img['url'])) {
+            return $img['url'];
+        }
+        return $img;
+    }
+}
 ?>
-<section class="team">
+
+<section class="team py-5">
     <div class="container">
-        <h2 class="fs-1 fw-bold pb-3 text-center pb-5">Title is here</h2>
-        <div class="d-flex align-items-center justify-content-center">
-            <div class="col-4 text-center">
-                <img class="pb-3 rounded-circle" src="<?php echo $image; ?>" alt="" />
-                <h5 class="fs-3 fw-bold pb-3">Title is here</h5>
-                <p class="fs-5">
-                    Description - short description of the text
+
+        <h2 class="fs-1 fw-bold text-center mb-5">
+            <?php echo esc_html($section_title); ?>
+        </h2>
+
+        <div class="d-flex flex-wrap justify-content-center align-items-stretch gap-3">
+
+            <div class="team-member-card text-center" style="flex: 1 1 300px; max-width: 350px;">
+                <?php 
+                $img_url_1 = get_team_img_url($member_1_image);
+                if (!empty($img_url_1)): 
+                ?>
+                <img class="rounded-circle mb-3" src="<?php echo esc_url($img_url_1); ?>"
+                    alt="<?php echo esc_attr($member_1_name); ?>"
+                    style="width: 250px; height: 250px; object-fit: cover;" />
+                <?php endif; ?>
+
+                <h5 class="fs-3 fw-bold mb-3">
+                    <?php echo esc_html($member_1_name); ?>
+                </h5>
+
+                <p class="fs-5 mb-0">
+                    <?php echo esc_html($member_1_description); ?>
                 </p>
             </div>
-            <div class="col-4 text-center">
-                <img class="pb-3 rounded-circle" src="<?php echo $image; ?>" alt="" />
-                <h5 class="fs-3 fw-bold pb-3">Title is here</h5>
-                <p class="fs-5">
-                    Description - short description of the text
+
+            <div class="team-member-card text-center" style="flex: 1 1 300px; max-width: 350px;">
+                <?php 
+                $img_url_2 = get_team_img_url($member_2_image);
+                if (!empty($img_url_2)): 
+                ?>
+                <img class="rounded-circle mb-3" src="<?php echo esc_url($img_url_2); ?>"
+                    alt="<?php echo esc_attr($member_2_name); ?>"
+                    style="width:250px; height: 250px;  object-fit: cover;" />
+                <?php endif; ?>
+
+                <h5 class="fs-3 fw-bold mb-3">
+                    <?php echo esc_html($member_2_name); ?>
+                </h5>
+
+                <p class="fs-5 mb-0">
+                    <?php echo esc_html($member_2_description); ?>
                 </p>
             </div>
-            <div class="col-4 text-center">
-                <img class="pb-3 rounded-circle" src="<?php echo $image; ?>" alt="" />
-                <h5 class="fs-3 fw-bold pb-3">Title is here</h5>
-                <p class="fs-5">
-                    Description - short description of the text
+
+            <div class="team-member-card text-center" style="flex: 1 1 300px; max-width: 350px;">
+                <?php 
+                $img_url_3 = get_team_img_url($member_3_image);
+                if (!empty($img_url_3)): 
+                ?>
+                <img class="rounded-circle mb-3" src="<?php echo esc_url($img_url_3); ?>"
+                    alt="<?php echo esc_attr($member_3_name); ?>"
+                    style="width:250px; height: 250px; object-fit: cover;" />
+                <?php endif; ?>
+
+                <h5 class="fs-3 fw-bold mb-3">
+                    <?php echo esc_html($member_3_name); ?>
+                </h5>
+
+                <p class="fs-5 mb-0">
+                    <?php echo esc_html($member_3_description); ?>
                 </p>
             </div>
 
         </div>
+
     </div>
 </section>
