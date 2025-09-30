@@ -4,21 +4,21 @@ include 'assets/inc/redux-config.php';
 
 function enqueue_theme_styles() {
         wp_enqueue_style(
-            'theme-style',
-            get_template_directory_uri() . '/assets/css/main.css',
+            'bootstrap-css',
+            get_template_directory_uri() . '/assets/css/bootstrap.min.css',
             array(),
             '1.0.0'
         );
         wp_enqueue_style(
             'swiper-bundle-css',
             get_template_directory_uri() . '/assets/css/swiper-bundle.min.css',
-            array(),
+            array('bootstrap-css'),
             '1.0.0'
         );
         wp_enqueue_style(
-            'bootstrap-css',
-            get_template_directory_uri() . '/assets/css/bootstrap.min.css',
-            array(),
+            'theme-style',
+            get_template_directory_uri() . '/assets/css/main.css',
+            array('bootstrap-css', 'swiper-bundle-css'),
             '1.0.0'
         );
 }
@@ -29,41 +29,37 @@ function enqueue_theme_scripts() {
     wp_enqueue_script(
         'theme-main-js',
         get_template_directory_uri() . '/assets/js/main.js',
-        array('jquery'), // Dependencies
-        '1.0.0',        // Version
-        true            // Load in footer
+        array('jquery'),
+        '1.0.0',       
+        true            
     );
     wp_enqueue_script(
         'swiper-bundle-js',
         get_template_directory_uri() . '/assets/js/swiper-bundle.min.js',
-        '1.0.0',        // Version
-        true            // Load in footer
+        '1.0.0',       
+        true           
     );
     
 }
 add_action('wp_enqueue_scripts', 'enqueue_theme_scripts');
 
 
-// Disable Gutenberg Block Editor
 add_filter('use_block_editor_for_post', '__return_false', 10);
 add_filter('use_block_editor_for_post_type', '__return_false', 10);
 
-// Remove Gutenberg CSS
 function remove_gutenberg_css() {
     wp_dequeue_style('wp-block-library');
     wp_dequeue_style('wp-block-library-theme');
-    wp_dequeue_style('wc-block-style'); // WooCommerce blocks if used
+    wp_dequeue_style('wc-block-style'); 
 }
 add_action('wp_enqueue_scripts', 'remove_gutenberg_css', 100);
 
-// Remove Gutenberg from admin bar
 function remove_gutenberg_admin_bar() {
     remove_action('admin_bar_menu', 'wp_admin_bar_edit_post_link', 10);
 }
 add_action('admin_bar_menu', 'remove_gutenberg_admin_bar', 5);
 
 
-// Register Header CPT
 function create_header_cpt() {
     register_post_type('header', array(
         'labels' => array(
@@ -85,7 +81,6 @@ function create_header_cpt() {
 add_action('init', 'create_header_cpt');
 
 
-// Register Header CPT
 function create_footer_cpt() {
     register_post_type('footer', array(
         'labels' => array(
@@ -108,7 +103,6 @@ add_action('init', 'create_footer_cpt');
 
 
 
-// Register Navigation Menus
 function register_theme_menus() {
     register_nav_menus(array(
         'primary' => __('Primary Menu', 'your-theme-text-domain'),
@@ -117,7 +111,6 @@ function register_theme_menus() {
 }
 add_action('init', 'register_theme_menus');
 
-// Allow SVG Upload
 function add_svg_support($mimes) {
     $mimes['svg'] = 'image/svg+xml';
     $mimes['svgz'] = 'image/svg+xml';
@@ -125,7 +118,6 @@ function add_svg_support($mimes) {
 }
 add_filter('upload_mimes', 'add_svg_support');
 
-// Fix SVG display in Media Library
 function fix_svg_thumb_display() {
     echo '<style>
         td.media-icon img[src$=".svg"], img[src$=".svg"].attachment-post-thumbnail { 
@@ -136,27 +128,20 @@ function fix_svg_thumb_display() {
 }
 add_action('admin_head', 'fix_svg_thumb_display');
 
-// Sanitize SVG uploads
 function sanitize_svg($file) {
     if ($file['type'] === 'image/svg+xml') {
         if (!function_exists('simplexml_load_file')) {
             return $file;
         }
-
-        // Load the SVG file
         $file_content = file_get_contents($file['tmp_name']);
-        
-        // Check if the file is actually an SVG
         if (strpos($file_content, '<svg') === false) {
             return $file;
         }
 
-        // Basic sanitization
         $file_content = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $file_content);
         $file_content = preg_replace('#<onclick(.*?)>(.*?)</onclick>#is', '', $file_content);
         $file_content = preg_replace('#<onload(.*?)>(.*?)</onload>#is', '', $file_content);
         
-        // Save the sanitized content
         file_put_contents($file['tmp_name'], $file_content);
     }
     return $file;
@@ -169,9 +154,6 @@ function add_class_to_nav_menu_links($atts, $item, $args) {
 }
 add_filter('nav_menu_link_attributes', 'add_class_to_nav_menu_links', 10, 3);
 
-/**
- * Generate dynamic CSS from Redux colors
- */
 function generate_redux_colors_css() {
     $primary_color = page_builder_simple_option('primary_color', '#007cba');
     $secondary_color = page_builder_simple_option('secondary_color', '#28a745');
@@ -202,87 +184,102 @@ function generate_redux_colors_css() {
 }
 add_action('wp_head', 'generate_redux_colors_css');
 
+
+
 /**
- * Load Google Fonts from Redux Typography settings
+ * Enqueue Google Fonts from Redux Typography Settings
  */
-function load_redux_google_fonts() {
-    $body_typography = page_builder_simple_option('body_typography');
-    $heading_typography = page_builder_simple_option('heading_typography');
-    
-    $google_fonts = array();
-    
-    if (!empty($body_typography['google']) && !empty($body_typography['font-family'])) {
-        $google_fonts[] = $body_typography['font-family'] . ':' . $body_typography['font-weight'];
+function page_builder_enqueue_redux_google_fonts() {
+    if (!class_exists('Redux')) {
+        return;
     }
     
-    if (!empty($heading_typography['google']) && !empty($heading_typography['font-family'])) {
-        $google_fonts[] = $heading_typography['font-family'] . ':' . $heading_typography['font-weight'];
-    }
-    $google_fonts = array_unique($google_fonts);
+    $body_font = page_builder_simple_option('body_typography');
+    $heading_font = page_builder_simple_option('heading_typography');
+    $custom_fonts = page_builder_simple_option('custom_google_fonts');
     
-    if (!empty($google_fonts)) {
-        $fonts_url = 'https://fonts.googleapis.com/css2?family=' . implode('&family=', $google_fonts) . '&display=swap';
-        wp_enqueue_style('redux-google-fonts', $fonts_url, array(), null);
+    $fonts_to_load = array();
+    
+    if (!empty($body_font['font-family']) && !empty($body_font['google'])) {
+        $font_family = str_replace(' ', '+', $body_font['font-family']);
+        $font_weight = !empty($body_font['font-weight']) ? ':wght@' . $body_font['font-weight'] : '';
+        $fonts_to_load[] = $font_family . $font_weight;
+    }
+    
+    if (!empty($heading_font['font-family']) && !empty($heading_font['google'])) {
+        $font_family = str_replace(' ', '+', $heading_font['font-family']);
+        $font_weight = !empty($heading_font['font-weight']) ? ':wght@' . $heading_font['font-weight'] : '';
+        
+        $heading_font_key = $font_family . $font_weight;
+        if (!in_array($heading_font_key, $fonts_to_load)) {
+            $fonts_to_load[] = $heading_font_key;
+        }
+    }
+    
+    if (!empty($fonts_to_load)) {
+        $fonts_url = 'https://fonts.googleapis.com/css2?family=' . implode('&family=', $fonts_to_load) . '&display=swap';
+        wp_enqueue_style('page-builder-google-fonts', $fonts_url, array(), null);
     }
     
     if (!empty($custom_fonts) && is_array($custom_fonts)) {
         foreach ($custom_fonts as $index => $font_url) {
             if (!empty($font_url)) {
-                wp_enqueue_style('custom-google-font-' . $index, $font_url, array(), null);
+                wp_enqueue_style('page-builder-custom-font-' . $index, esc_url($font_url), array(), null);
             }
         }
     }
 }
-add_action('wp_enqueue_scripts', 'load_redux_google_fonts');
+add_action('wp_enqueue_scripts', 'page_builder_enqueue_redux_google_fonts');
 
 /**
- * Generate typography CSS from Redux settings
+ * Output Custom Typography CSS from Redux
  */
-function generate_redux_typography_css() {
-    $body_typography = page_builder_simple_option('body_typography');
-    $heading_typography = page_builder_simple_option('heading_typography');
-    
-    $css = "<style type='text/css'>";
-    
-    // Body Typography
-    if (!empty($body_typography)) {
-        $css .= "body {";
-        if (!empty($body_typography['font-family'])) {
-            $css .= "font-family: '{$body_typography['font-family']}', sans-serif;";
-        }
-        if (!empty($body_typography['font-size'])) {
-            $css .= "font-size: {$body_typography['font-size']};";
-        }
-        if (!empty($body_typography['font-weight'])) {
-            $css .= "font-weight: {$body_typography['font-weight']};";
-        }
-        if (!empty($body_typography['line-height'])) {
-            $css .= "line-height: {$body_typography['line-height']};";
-        }
-        if (!empty($body_typography['color'])) {
-            $css .= "color: {$body_typography['color']};";
-        }
-        $css .= "}";
+function page_builder_output_typography_css() {
+    if (!class_exists('Redux')) {
+        return;
     }
     
-    // Heading Typography
-    if (!empty($heading_typography)) {
-        $css .= "h1, h2, h3, h4, h5, h6 {";
-        if (!empty($heading_typography['font-family'])) {
-            $css .= "font-family: '{$heading_typography['font-family']}', sans-serif;";
+    $body_font = page_builder_simple_option('body_typography');
+    $heading_font = page_builder_simple_option('heading_typography');
+    
+    $css = '<style type="text/css">';
+    
+    if (!empty($body_font)) {
+        $css .= 'body {';
+        if (!empty($body_font['font-family'])) {
+            $css .= 'font-family: "' . esc_attr($body_font['font-family']) . '", sans-serif;';
         }
-        if (!empty($heading_typography['font-weight'])) {
-            $css .= "font-weight: {$heading_typography['font-weight']};";
+        if (!empty($body_font['font-size'])) {
+            $css .= 'font-size: ' . esc_attr($body_font['font-size']) . ';';
         }
-        if (!empty($heading_typography['color'])) {
-            $css .= "color: {$heading_typography['color']};";
+        if (!empty($body_font['line-height'])) {
+            $css .= 'line-height: ' . esc_attr($body_font['line-height']) . ';';
         }
-        $css .= "}";
+        if (!empty($body_font['color'])) {
+            $css .= 'color: ' . esc_attr($body_font['color']) . ';';
+        }
+        if (!empty($body_font['font-weight'])) {
+            $css .= 'font-weight: ' . esc_attr($body_font['font-weight']) . ';';
+        }
+        $css .= '}';
     }
     
+    if (!empty($heading_font)) {
+        $css .= 'h1, h2, h3, h4, h5, h6 {';
+        if (!empty($heading_font['font-family'])) {
+            $css .= 'font-family: "' . esc_attr($heading_font['font-family']) . '", sans-serif;';
+        }
+        if (!empty($heading_font['color'])) {
+            $css .= 'color: ' . esc_attr($heading_font['color']) . ';';
+        }
+        if (!empty($heading_font['font-weight'])) {
+            $css .= 'font-weight: ' . esc_attr($heading_font['font-weight']) . ';';
+        }
+        $css .= '}';
+    }
     
-    $css .= "</style>";
+    $css .= '</style>';
     
     echo $css;
 }
-add_action('wp_head', 'generate_redux_typography_css');
+add_action('wp_head', 'page_builder_output_typography_css');

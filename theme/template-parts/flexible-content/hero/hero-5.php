@@ -63,7 +63,7 @@ if ($image) {
 
             <?php if ($image_url): ?>
             <div class="col-12 col-lg-6 order-2 order-lg-2">
-                <div class="hero-image-container position-relative overflow-hidden ">
+                <div class="hero-image-container position-relative overflow-hidden">
                     <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($image_alt); ?>"
                         class="img-fluid w-100 hero-image" loading="lazy" </div>
                 </div>

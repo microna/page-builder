@@ -12,8 +12,25 @@ if (!defined('ABSPATH')) {
 if (!class_exists('Redux')) {
     // Show admin notice if Redux is not available
     add_action('admin_notices', function() {
-        echo '<div class="notice notice-error"><p><strong>Redux Framework Required:</strong> Please install and activate the Redux Framework plugin to use theme options.</p></div>';
+        echo '<div class="notice notice-error"><p><strong>Redux Framework Required:</strong> Please install and activate the Redux Framework plugin to use theme options. <a href="https://wordpress.org/plugins/redux-framework/" target="_blank">Download Redux Framework</a></p></div>';
     });
+    
+    // Create a fallback function for when Redux is not available
+    function page_builder_simple_option($key, $default = '') {
+        // Return default values when Redux is not available
+        $fallback_options = array(
+            'primary_color' => '#007cba',
+            'secondary_color' => '#28a745',
+            'site_title' => get_bloginfo('name'),
+            'container_width' => 'container',
+            'header_sticky' => false,
+            'footer_style' => 'footer-1',
+            'social_icons_style' => 'rounded',
+        );
+        
+        return isset($fallback_options[$key]) ? $fallback_options[$key] : $default;
+    }
+    
     return; // Exit if Redux is not available
 }
 
@@ -184,6 +201,12 @@ Redux::setSection($opt_name, array(
  * Helper function to get Redux option
  */
 function page_builder_simple_option($key, $default = '') {
+    // Check if Redux is available
+    if (class_exists('Redux')) {
+        return Redux::getOption('page_builder_simple_options', $key, $default);
+    }
+    
+    // Fallback to simple options when Redux is not available
     global $page_builder_simple_options;
     
     if (empty($page_builder_simple_options)) {
@@ -192,6 +215,188 @@ function page_builder_simple_option($key, $default = '') {
     
     return isset($page_builder_simple_options[$key]) ? $page_builder_simple_options[$key] : $default;
 }
+
+/**
+ * SECTION 4: LAYOUT SETTINGS
+ */
+Redux::setSection($opt_name, array(
+    'title' => __('Layout', 'page-builder'),
+    'id'    => 'layout',
+    'desc'  => __('Layout and container settings', 'page-builder'),
+    'icon'  => 'el el-screen',
+    'fields' => array(
+        array(
+            'id'       => 'container_width',
+            'type'     => 'select',
+            'title'    => __('Container Width', 'page-builder'),
+            'subtitle' => __('Choose the maximum width for your content', 'page-builder'),
+            'options'  => array(
+                'container-fluid' => 'Full Width (100%)',
+                'container' => 'Bootstrap Container (1200px)',
+                'container-sm' => 'Small Container (576px)',
+                'container-md' => 'Medium Container (768px)',
+                'container-lg' => 'Large Container (992px)',
+                'container-xl' => 'Extra Large Container (1140px)',
+            ),
+            'default'  => 'container',
+        ),
+        array(
+            'id'       => 'header_sticky',
+            'type'     => 'switch',
+            'title'    => __('Sticky Header', 'page-builder'),
+            'subtitle' => __('Enable sticky header navigation', 'page-builder'),
+            'default'  => false,
+        ),
+        array(
+            'id'       => 'footer_style',
+            'type'     => 'select',
+            'title'    => __('Footer Style', 'page-builder'),
+            'subtitle' => __('Choose footer layout style', 'page-builder'),
+            'options'  => array(
+                'footer-1' => 'Footer Style 1',
+                'footer-2' => 'Footer Style 2',
+                'footer-3' => 'Footer Style 3',
+                'footer-4' => 'Footer Style 4',
+                'footer-5' => 'Footer Style 5',
+            ),
+            'default'  => 'footer-1',
+        ),
+    )
+));
+
+/**
+ * SECTION 5: SOCIAL MEDIA
+ */
+Redux::setSection($opt_name, array(
+    'title' => __('Social Media', 'page-builder'),
+    'id'    => 'social',
+    'desc'  => __('Social media links and settings', 'page-builder'),
+    'icon'  => 'el el-share',
+    'fields' => array(
+        array(
+            'id'       => 'facebook_url',
+            'type'     => 'text',
+            'title'    => __('Facebook URL', 'page-builder'),
+            'subtitle' => __('Enter your Facebook page URL', 'page-builder'),
+            'validate' => 'url',
+        ),
+        array(
+            'id'       => 'twitter_url',
+            'type'     => 'text',
+            'title'    => __('Twitter URL', 'page-builder'),
+            'subtitle' => __('Enter your Twitter profile URL', 'page-builder'),
+            'validate' => 'url',
+        ),
+        array(
+            'id'       => 'instagram_url',
+            'type'     => 'text',
+            'title'    => __('Instagram URL', 'page-builder'),
+            'subtitle' => __('Enter your Instagram profile URL', 'page-builder'),
+            'validate' => 'url',
+        ),
+        array(
+            'id'       => 'linkedin_url',
+            'type'     => 'text',
+            'title'    => __('LinkedIn URL', 'page-builder'),
+            'subtitle' => __('Enter your LinkedIn profile URL', 'page-builder'),
+            'validate' => 'url',
+        ),
+        array(
+            'id'       => 'youtube_url',
+            'type'     => 'text',
+            'title'    => __('YouTube URL', 'page-builder'),
+            'subtitle' => __('Enter your YouTube channel URL', 'page-builder'),
+            'validate' => 'url',
+        ),
+        array(
+            'id'       => 'social_icons_style',
+            'type'     => 'select',
+            'title'    => __('Social Icons Style', 'page-builder'),
+            'subtitle' => __('Choose the style for social media icons', 'page-builder'),
+            'options'  => array(
+                'rounded' => 'Rounded',
+                'square' => 'Square',
+                'circle' => 'Circle',
+                'minimal' => 'Minimal',
+            ),
+            'default'  => 'rounded',
+        ),
+    )
+));
+
+/**
+ * SECTION 6: CONTACT INFORMATION
+ */
+Redux::setSection($opt_name, array(
+    'title' => __('Contact Info', 'page-builder'),
+    'id'    => 'contact',
+    'desc'  => __('Contact information and settings', 'page-builder'),
+    'icon'  => 'el el-phone',
+    'fields' => array(
+        array(
+            'id'       => 'contact_phone',
+            'type'     => 'text',
+            'title'    => __('Phone Number', 'page-builder'),
+            'subtitle' => __('Enter your contact phone number', 'page-builder'),
+        ),
+        array(
+            'id'       => 'contact_email',
+            'type'     => 'text',
+            'title'    => __('Email Address', 'page-builder'),
+            'subtitle' => __('Enter your contact email address', 'page-builder'),
+            'validate' => 'email',
+        ),
+        array(
+            'id'       => 'contact_address',
+            'type'     => 'textarea',
+            'title'    => __('Address', 'page-builder'),
+            'subtitle' => __('Enter your business address', 'page-builder'),
+        ),
+        array(
+            'id'       => 'contact_hours',
+            'type'     => 'text',
+            'title'    => __('Business Hours', 'page-builder'),
+            'subtitle' => __('Enter your business hours (e.g., Mon-Fri 9AM-5PM)', 'page-builder'),
+        ),
+    )
+));
+
+/**
+ * SECTION 7: SEO & ANALYTICS
+ */
+Redux::setSection($opt_name, array(
+    'title' => __('SEO & Analytics', 'page-builder'),
+    'id'    => 'seo',
+    'desc'  => __('SEO and analytics settings', 'page-builder'),
+    'icon'  => 'el el-search',
+    'fields' => array(
+        array(
+            'id'       => 'google_analytics_id',
+            'type'     => 'text',
+            'title'    => __('Google Analytics ID', 'page-builder'),
+            'subtitle' => __('Enter your Google Analytics tracking ID (e.g., GA-XXXXXXXXX)', 'page-builder'),
+        ),
+        array(
+            'id'       => 'google_tag_manager_id',
+            'type'     => 'text',
+            'title'    => __('Google Tag Manager ID', 'page-builder'),
+            'subtitle' => __('Enter your Google Tag Manager container ID (e.g., GTM-XXXXXXX)', 'page-builder'),
+        ),
+        array(
+            'id'       => 'facebook_pixel_id',
+            'type'     => 'text',
+            'title'    => __('Facebook Pixel ID', 'page-builder'),
+            'subtitle' => __('Enter your Facebook Pixel ID', 'page-builder'),
+        ),
+        array(
+            'id'       => 'meta_description',
+            'type'     => 'textarea',
+            'title'    => __('Default Meta Description', 'page-builder'),
+            'subtitle' => __('Default meta description for pages without custom description', 'page-builder'),
+            'rows'     => 3,
+        ),
+    )
+));
 
 /**
  * Initialize Redux options global variable
