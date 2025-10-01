@@ -22,36 +22,37 @@ if ($image) {
 }
 ?>
 
-<section id="hero" style="min-height: 100vh;" class="position-relative min-vh-100 d-flex align-items-center">
-    <div class="container h-100">
-        <div class="row align-items-center">
+<section id="hero" class="position-relative d-flex align-items-center py-5" style="min-height: 100vh;">
+    <div class="container">
+        <div class="row align-items-center g-4 g-lg-5">
 
-            <div class="col-12 col-lg-6 order-1 order-lg-1 text-center text-lg-start pb-4 pb-lg-0">
+            <!-- Content Column -->
+            <div class="col-12 col-lg-6 order-2 order-lg-1 text-center text-lg-start">
 
                 <?php if ($text): ?>
-                <h1 class="display-4 display-md-3 display-lg-2 fw-bold mb-3 mb-md-4">
+                <h1 class="display-5 display-md-4 display-lg-3 fw-bold mb-3 mb-md-4">
                     <?php echo esc_html($text); ?>
                 </h1>
                 <?php endif; ?>
 
                 <?php if ($description): ?>
-                <p class="fs-5 fs-md-5 fs-lg-4 mb-4 mb-md-5 text-muted lh-base">
+                <p class="fs-6 fs-md-5 mb-4 mb-md-5 text-muted lh-base">
                     <?php echo esc_html($description); ?>
                 </p>
                 <?php endif; ?>
 
                 <?php if ($button_text_primary || $button_text_secondary): ?>
-                <div <div
-                    class="d-flex flex-column flex-sm-row gap-3 align-items-center align-sm-items-start align-lg-items-start justify-content-center justify-content-lg-start ">
+                <div
+                    class="d-flex flex-column flex-sm-row gap-3 align-items-center align-sm-start justify-content-center justify-content-lg-start">
 
                     <?php if ($button_text_primary && $button_url_primary): ?>
-                    <a href="<?php echo esc_url($button_url_primary); ?>" class="button-primary " role="button">
+                    <a href="<?php echo esc_url($button_url_primary); ?>" class="button-primary" role="button">
                         <?php echo esc_html($button_text_primary); ?>
                     </a>
                     <?php endif; ?>
 
                     <?php if ($button_text_secondary && $button_url_secondary): ?>
-                    <a href="<?php echo esc_url($button_url_secondary); ?>" class="button-secondary" role=" button">
+                    <a href="<?php echo esc_url($button_url_secondary); ?>" class="button-secondary" role="button">
                         <?php echo esc_html($button_text_secondary); ?>
                     </a>
                     <?php endif; ?>
@@ -62,13 +63,15 @@ if ($image) {
             </div>
 
             <?php if ($image_url): ?>
-            <div class="col-12 col-lg-6 order-2 order-lg-2">
-                <div class="hero-image-container position-relative overflow-hidden">
+            <div class="col-12 col-lg-6 order-1 order-lg-2">
+                <div class="hero-image-wrapper">
                     <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($image_alt); ?>"
-                        class="img-fluid w-100 hero-image" loading="lazy" </div>
+                        class="img-fluid hero-image rounded shadow-sm" loading="lazy"
+                        style="max-height: 500px; width: 100%; object-fit: cover;">
                 </div>
-                <?php endif; ?>
-
             </div>
+            <?php endif; ?>
+
         </div>
+    </div>
 </section>

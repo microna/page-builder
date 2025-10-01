@@ -62,15 +62,16 @@ if ($image) {
 
             </div>
 
-            <!-- Image Column -->
             <?php if ($image_url): ?>
-            <div class="col-12 col-lg-6 order-2 order-lg-2">
-                <div class="hero-image-container position-relative overflow-hidden ">
+            <div class="col-12 col-lg-6 order-1 order-lg-2">
+                <div class="hero-image-wrapper">
                     <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($image_alt); ?>"
-                        class="img-fluid w-100 hero-image" loading="lazy" </div>
+                        class="img-fluid hero-image rounded shadow-sm" loading="lazy"
+                        style="max-height: 500px; width: 100%; object-fit: cover;">
                 </div>
-                <?php endif; ?>
-
             </div>
+            <?php endif; ?>
+
         </div>
+    </div>
 </section>
