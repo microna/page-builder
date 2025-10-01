@@ -1,47 +1,79 @@
 <?php
-// Get theme settings
-$container_class = get_theme_container_class();
-$is_sticky = is_header_sticky();
-$header_classes = 'pt-5';
-if ($is_sticky) {
-    $header_classes .= ' sticky-header';
+// Get ACF fields
+$text = get_sub_field('title');
+$description = get_sub_field('description');
+$button_text_primary = get_sub_field('primary_button_text');
+$button_url_primary = get_sub_field('primary_button_link');
+$button_text_secondary = get_sub_field('secondary_button_text');
+$button_url_secondary = get_sub_field('secondary_button_link');
+$image = get_sub_field('image');
+
+// Handle ACF image field (can be array or URL)
+$image_url = '';
+$image_alt = '';
+
+if ($image) {
+    if (is_array($image)) {
+        $image_url = $image['url'] ?? '';
+        $image_alt = $image['alt'] ?? $text ?? 'Hero image';
+    } else {
+        $image_url = $image;
+        $image_alt = $text ?? 'Hero image';
+    }
 }
 ?>
 
-<header class="<?php echo esc_attr($header_classes); ?>">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="<?php echo esc_attr($container_class); ?>">
-            <div class="navbar-brand">
-                <a class="logo" href="<?php echo esc_url(home_url('/')); ?>">
-                    <?php 
-                    // Use our helper function for logo display
-                    $logo_url = get_theme_logo(get_template_directory_uri() . '/assets/images/logo.png');
-                    $site_title = get_theme_site_title();
-                    ?>
-                    <?php if ($logo_url): ?>
-                        <img src="<?php echo esc_url($logo_url); ?>" alt="<?php echo esc_attr($site_title); ?>" />
-                    <?php else: ?>
-                        <span class="site-title"><?php echo esc_html($site_title); ?></span>
-                    <?php endif; ?>
-                </a>
-            </div>
-            
-            <div class="navbar-nav">
-                <?php wp_nav_menu(array(
-                        'theme_location' => 'primary',
-                        'container' => false,
-                        'menu_class' => 'menu',
-                        'menu_id' => 'primary-menu',
-                        'fallback_cb' => false,
-                    )); ?>
-            </div>
-            
-            <a href="#" class="button-primary">Login</a>
+<section id="hero" class="position-relative d-flex align-items-center" style="min-height: 100dvh;">
+    <div class="container">
+        <div class="row align-items-center g-4 g-lg-5">
 
-            <button class="burger">
-                <span></span>
-            </button>
+            <!-- Content Column -->
+            <div class="col-12 col-lg-6 order-2 order-lg-1 text-center text-lg-start">
+
+                <?php if ($text): ?>
+                <h1 class="display-5 display-md-4 display-lg-3 fw-bold mb-3 mb-md-4">
+                    <?php echo esc_html($text); ?>
+                </h1>
+                <?php endif; ?>
+
+                <?php if ($description): ?>
+                <p class="fs-6 fs-md-5 mb-4 mb-md-5 text-muted lh-base">
+                    <?php echo esc_html($description); ?>
+                </p>
+                <?php endif; ?>
+
+                <?php if ($button_text_primary || $button_text_secondary): ?>
+                <div
+                    class="d-flex flex-column flex-sm-row gap-3 align-items-center align-sm-start justify-content-center justify-content-lg-start">
+
+                    <?php if ($button_text_primary && $button_url_primary): ?>
+                    <a href="<?php echo esc_url($button_url_primary); ?>" class="button-primary" role="button">
+                        <?php echo esc_html($button_text_primary); ?>
+                    </a>
+                    <?php endif; ?>
+
+                    <?php if ($button_text_secondary && $button_url_secondary): ?>
+                    <a href="<?php echo esc_url($button_url_secondary); ?>" class="button-secondary" role="button">
+                        <?php echo esc_html($button_text_secondary); ?>
+                    </a>
+                    <?php endif; ?>
+
+                </div>
+                <?php endif; ?>
+
+            </div>
+
+            <!-- Image Column -->
+            <?php if ($image_url): ?>
+            <div class="col-12 col-lg-6 order-1 order-lg-2">
+                <div class="hero-image-wrapper">
+                    <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($image_alt); ?>"
+                        class="img-fluid hero-image rounded shadow-sm" loading="lazy"
+                        style="max-height: 500px; width: 100%; object-fit: cover;">
+                </div>
+            </div>
+            <?php endif; ?>
+
         </div>
-    </nav>
-</header>
+    </div>
+</section>

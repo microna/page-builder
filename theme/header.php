@@ -8,7 +8,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-    <!-- <?php
+    <?php
     // Simple loop for 'header' custom post type
     $headers = new WP_Query(array(
     'post_type' => 'header',
@@ -19,16 +19,15 @@
     if ($headers->have_posts()) :
     while ($headers->have_posts()) : $headers->the_post();
     ?>
-    <div class="header-item">
 
 
-        <?php
+    <?php
             // Display ACF Flexible Content - header_sections
             if (have_rows('header_sections')) :
                 while (have_rows('header_sections')) : the_row();
                     $layout = get_row_layout();
                     ?>
-        <?php
+    <?php
                     // Use template parts for each header layout
                     switch ($layout) {
                         case 'header_1':
@@ -71,7 +70,7 @@
                             break;
                     }
                     ?>
-        <?php
+    <?php
                 endwhile;
             endif;
             ?>
@@ -83,4 +82,4 @@
 else :
     echo '<p>No headers found.</p>';
 endif;
-?> -->
+?>

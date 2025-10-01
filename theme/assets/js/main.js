@@ -26,7 +26,6 @@ function burgerMenu() {
 }
 burgerMenu();
 
-// Аккордеон
 function faq() {
   const items = document.querySelectorAll(".faq__item-trigger");
   console.log(items);
@@ -47,36 +46,4 @@ function faq() {
 }
 faq();
 
-// Testimonials Slider for testimonials-2
-var testimonialsSwiper2 = new Swiper(".testimonials__wrapper", {
-  slidesPerView: 2,
-  spaceBetween: 30,
-  loop: true,
-
-  autoHeight: false, // Disable auto height to force equal heights
-
-  // Navigation arrows
-  navigation: {
-    nextEl: ".testimonials__button-next",
-    prevEl: ".testimonials__button-prev",
-  },
-
-  // Pagination dots
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-
-  // Optional: Add autoplay
-  autoplay: {
-    delay: 5000,
-    disableOnInteraction: false,
-  },
-
-  // Update heights when slides change
-  on: {
-    slideChange: function () {
-      this.updateSize();
-    },
-  },
-});
+console.log("Main.js loaded");
