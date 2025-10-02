@@ -399,6 +399,65 @@ Redux::setSection($opt_name, array(
 ));
 
 /**
+ * SECTION: DARK THEME
+ */
+Redux::setSection($opt_name, array(
+    'title' => __('Dark Theme', 'page-builder'),
+    'id'    => 'dark_theme',
+    'desc'  => __('Dark mode settings', 'page-builder'),
+    'icon'  => 'el el-adjust',
+    'fields' => array(
+        array(
+            'id'       => 'enable_dark_theme',
+            'type'     => 'switch',
+            'title'    => __('Enable Dark Theme', 'page-builder'),
+            'subtitle' => __('Turn on dark theme for entire website', 'page-builder'),
+            'default'  => false,
+        ),
+        array(
+            'id'          => 'dark_bg_color',
+            'type'        => 'color',
+            'title'       => __('Dark Background Color', 'page-builder'),
+            'subtitle'    => __('Main background color for dark theme', 'page-builder'),
+            'default'     => '#1a1a1a',
+            'validate'    => 'color',
+            'transparent' => false,
+            'required'    => array('enable_dark_theme', '=', true),
+        ),
+        array(
+            'id'          => 'dark_text_color',
+            'type'        => 'color',
+            'title'       => __('Dark Text Color', 'page-builder'),
+            'subtitle'    => __('Main text color for dark theme', 'page-builder'),
+            'default'     => '#e0e0e0',
+            'validate'    => 'color',
+            'transparent' => false,
+            'required'    => array('enable_dark_theme', '=', true),
+        ),
+        array(
+            'id'          => 'dark_card_bg_color',
+            'type'        => 'color',
+            'title'       => __('Dark Card/Section Background', 'page-builder'),
+            'subtitle'    => __('Background color for cards and sections in dark theme', 'page-builder'),
+            'default'     => '#2a2a2a',
+            'validate'    => 'color',
+            'transparent' => false,
+            'required'    => array('enable_dark_theme', '=', true),
+        ),
+        array(
+            'id'          => 'dark_border_color',
+            'type'        => 'color',
+            'title'       => __('Dark Border Color', 'page-builder'),
+            'subtitle'    => __('Border color for elements in dark theme', 'page-builder'),
+            'default'     => '#3a3a3a',
+            'validate'    => 'color',
+            'transparent' => false,
+            'required'    => array('enable_dark_theme', '=', true),
+        ),
+    )
+));
+
+/**
  * Initialize Redux options global variable
  */
 function page_builder_simple_initialize_redux_options() {

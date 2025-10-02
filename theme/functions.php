@@ -283,3 +283,198 @@ function page_builder_output_typography_css() {
     echo $css;
 }
 add_action('wp_head', 'page_builder_output_typography_css');
+
+/**
+ * Output Dark Theme CSS Based on Redux Setting
+ */
+function page_builder_dark_theme_css() {
+    // Check if dark theme is enabled
+    $enable_dark = page_builder_simple_option('enable_dark_theme', false);
+    
+    if (!$enable_dark) {
+        return; // Exit if dark theme is not enabled
+    }
+    
+    // Get dark theme colors
+    $dark_bg = page_builder_simple_option('dark_bg_color', '#1a1a1a');
+    $dark_text = page_builder_simple_option('dark_text_color', '#e0e0e0');
+    $dark_card_bg = page_builder_simple_option('dark_card_bg_color', '#2a2a2a');
+    $dark_border = page_builder_simple_option('dark_border_color', '#3a3a3a');
+    
+    ?>
+<style id="dark-theme-css">
+/* Dark Theme - Applied Globally */
+body {
+    background-color: <?php echo esc_attr($dark_bg);
+    ?> !important;
+    color: <?php echo esc_attr($dark_text);
+    ?> !important;
+}
+
+/* Cards and Sections */
+.bg-white,
+.card,
+.testimonial-card,
+.team-member,
+.team-card,
+.advantage-item,
+.advantage-card,
+.content-block-item,
+.content-card,
+.faq-trigger,
+.swiper-slide {
+    background-color: <?php echo esc_attr($dark_card_bg);
+    ?> !important;
+    color: <?php echo esc_attr($dark_text);
+    ?> !important;
+}
+
+/* Headers and Footers */
+header,
+footer,
+.footer-section,
+.header-main,
+nav,
+.navbar {
+    background-color: <?php echo esc_attr($dark_card_bg);
+    ?> !important;
+    border-color: <?php echo esc_attr($dark_border);
+    ?> !important;
+}
+
+/* Text Colors */
+.text-muted {
+    color: #b0b0b0 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: <?php echo esc_attr($dark_text);
+    ?> !important;
+}
+
+p,
+span,
+div {
+    color: inherit;
+}
+
+/* Form Elements */
+.form-control,
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+    background-color: <?php echo esc_attr($dark_card_bg);
+    ?> !important;
+    border-color: <?php echo esc_attr($dark_border);
+    ?> !important;
+    color: <?php echo esc_attr($dark_text);
+    ?> !important;
+}
+
+.form-control:focus,
+input:focus,
+textarea:focus {
+    background-color: <?php echo esc_attr($dark_bg);
+    ?> !important;
+    border-color: #0d6efd !important;
+    color: <?php echo esc_attr($dark_text);
+    ?> !important;
+}
+
+.form-control::placeholder {
+    color: #888 !important;
+}
+
+/* Borders */
+.border,
+.border-top,
+.border-bottom,
+.shadow,
+.shadow-sm,
+.shadow-lg {
+    border-color: <?php echo esc_attr($dark_border);
+    ?> !important;
+}
+
+/* Background Sections */
+.cta,
+.testimonials,
+.team,
+.advantages,
+section {
+    background-color: <?php echo esc_attr($dark_bg);
+    ?> !important;
+}
+
+/* Images - slight opacity reduction */
+img {
+    opacity: 0.9;
+}
+
+img:hover {
+    opacity: 1;
+}
+
+/* Links */
+a {
+    color: #6ea8fe;
+}
+
+a:hover {
+    color: #9ec5fe;
+}
+
+/* Buttons - keep original colors but adjust for dark theme */
+.btn-primary,
+.button-primary {
+    /* Keep button colors but ensure visibility */
+}
+
+.btn-outline-secondary,
+.button-secondary {
+    border-color: <?php echo esc_attr($dark_text);
+    ?> !important;
+    color: <?php echo esc_attr($dark_text);
+    ?> !important;
+}
+
+.btn-outline-secondary:hover,
+.button-secondary:hover {
+    background-color: <?php echo esc_attr($dark_text);
+    ?> !important;
+    color: <?php echo esc_attr($dark_bg);
+    ?> !important;
+}
+
+/* Social Icons */
+.footer-social-link {
+    background: <?php echo esc_attr($dark_card_bg);
+    ?> !important;
+}
+
+.footer-social-link:hover {
+    background: <?php echo esc_attr($dark_border);
+    ?> !important;
+}
+
+/* Menu Items */
+.menu a,
+.navbar-nav a {
+    color: <?php echo esc_attr($dark_text);
+    ?> !important;
+}
+
+.menu a:hover,
+.navbar-nav a:hover {
+    color: #6ea8fe !important;
+}
+</style>
+<?php
+}
+add_action('wp_head', 'page_builder_dark_theme_css', 100);

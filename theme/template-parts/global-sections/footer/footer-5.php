@@ -88,10 +88,11 @@ $current_year = date('Y');
 
                     <form class="newsletter-form d-flex flex-column flex-sm-row gap-3" action="#" method="post">
                         <div class="flex-grow-1">
-                            <input type="email" name="email" id="newsletter-email" class="form-control form-control-lg"
-                                placeholder="Enter your email" required aria-label="Email address">
+                            <input type="email" name="email" id="cta-email" class="form-control"
+                                placeholder="<?php echo esc_attr($placeholder_text); ?>" required
+                                aria-label="Email address">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-lg px-4">
+                        <button type="submit" class="btn button-primary btn-lg px-4">
                             <?php echo esc_html($newsletter_button_text); ?>
                         </button>
                     </form>
