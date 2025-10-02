@@ -418,6 +418,65 @@ Redux::setSection($opt_name, array(
 ));
 
 /**
+ * SECTION: ANIMATIONS (GSAP)
+ */
+Redux::setSection($opt_name, array(
+    'title' => __('Animations', 'page-builder'),
+    'id'    => 'animations',
+    'desc'  => __('GSAP animation settings', 'page-builder'),
+    'icon'  => 'el el-magic',
+    'fields' => array(
+        array(
+            'id'       => 'enable_smooth_scroll',
+            'type'     => 'switch',
+            'title'    => __('Enable Smooth Scroll', 'page-builder'),
+            'subtitle' => __('Enable GSAP smooth scrolling effect', 'page-builder'),
+            'default'  => true,
+        ),
+        array(
+            'id'       => 'smooth_scroll_speed',
+            'type'     => 'slider',
+            'title'    => __('Smooth Scroll Speed', 'page-builder'),
+            'subtitle' => __('Higher = slower scrolling', 'page-builder'),
+            'default'  => 1,
+            'min'      => 0.5,
+            'max'      => 3,
+            'step'     => 0.1,
+            'required' => array('enable_smooth_scroll', '=', true),
+        ),
+        array(
+            'id'       => 'enable_fade_in',
+            'type'     => 'switch',
+            'title'    => __('Enable Fade In Animation', 'page-builder'),
+            'subtitle' => __('Elements fade in as they scroll into view', 'page-builder'),
+            'default'  => true,
+        ),
+        array(
+            'id'       => 'fade_in_duration',
+            'type'     => 'slider',
+            'title'    => __('Fade In Duration', 'page-builder'),
+            'subtitle' => __('Animation duration in seconds', 'page-builder'),
+            'default'  => 1,
+            'min'      => 0.3,
+            'max'      => 3,
+            'step'     => 0.1,
+            'required' => array('enable_fade_in', '=', true),
+        ),
+        array(
+            'id'       => 'fade_in_distance',
+            'type'     => 'slider',
+            'title'    => __('Fade In Distance', 'page-builder'),
+            'subtitle' => __('How far elements move when fading in (pixels)', 'page-builder'),
+            'default'  => 50,
+            'min'      => 0,
+            'max'      => 200,
+            'step'     => 10,
+            'required' => array('enable_fade_in', '=', true),
+        ),
+    )
+));
+
+/**
  * Initialize Redux options global variable
  */
 function page_builder_simple_initialize_redux_options() {

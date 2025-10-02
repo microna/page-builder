@@ -321,7 +321,7 @@ body {
 .advantage-card,
 .content-block-item,
 .content-card,
-.faq-trigger,
+.trigger__text,
 .swiper-slide {
     background-color: <?php echo esc_attr($dark_card_bg);
     ?> !important;
@@ -479,12 +479,58 @@ a:hover {
 }
 add_action('wp_head', 'page_builder_dark_theme_css', 100);
 
+
+
 /**
- * Simple test to see if hooks are working
+ * Enqueue GSAP Libraries
  */
-function test_hooks_working() {
-    if (current_user_can('administrator') && isset($_GET['debug_fonts'])) {
-        echo '<!-- DEBUG: test_hooks_working() called -->';
+function page_builder_enqueue_gsap() {
+    $enable_smooth_scroll = page_builder_simple_option('enable_smooth_scroll', true);
+    $enable_fade_in = page_builder_simple_option('enable_fade_in', true);
+    
+    // Only load if at least one animation is enabled
+    if ($enable_smooth_scroll || $enable_fade_in) {
+        // GSAP Core
+        wp_enqueue_script('gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js', array(), '3.12.5', true);
+        
+        // ScrollTrigger Plugin
+        wp_enqueue_script('gsap-scrolltrigger', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js', array('gsap'), '3.12.5', true);
+        
+        // ScrollSmoother Plugin (for smooth scroll)
+        if ($enable_smooth_scroll) {
+            wp_enqueue_script('gsap-scrollsmoother', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollSmoother.min.js', array('gsap', 'gsap-scrolltrigger'), '3.12.5', true);
+        }
+        
+        // Custom animations script
+        wp_enqueue_script('page-builder-animations', get_template_directory_uri() . '/assets/js/animations.js', array('gsap', 'gsap-scrolltrigger'), '1.0.0', true);
+        
+        // Pass settings to JavaScript
+        wp_localize_script('page-builder-animations', 'animationSettings', array(
+            'smoothScroll' => $enable_smooth_scroll,
+            'smoothScrollSpeed' => page_builder_simple_option('smooth_scroll_speed', 1),
+            'fadeIn' => $enable_fade_in,
+            'fadeInDuration' => page_builder_simple_option('fade_in_duration', 1),
+            'fadeInDistance' => page_builder_simple_option('fade_in_distance', 50),
+        ));
     }
 }
-add_action('wp_head', 'test_hooks_working', 1);
+add_action('wp_enqueue_scripts', 'page_builder_enqueue_gsap');
+
+
+function page_builder_animation_css() {
+    if (page_builder_simple_option('enable_smooth_scroll', true)) {
+        ?>
+<style>
+#smooth-wrapper {
+    overflow: hidden;
+}
+
+#smooth-content {
+    overflow: visible;
+    width: 100%;
+}
+</style>
+<?php
+    }
+}
+add_action('wp_head', 'page_builder_animation_css');
