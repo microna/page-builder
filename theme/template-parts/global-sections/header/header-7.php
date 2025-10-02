@@ -13,7 +13,7 @@
                 </a>
             </div>
 
-            <button class="burger-active" aria-label="Menu">
+            <button class="burger-active" aria-label="Open navigation menu">
                 <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/burger-icon.svg'); ?>"
                     alt="Menu" />
             </button>

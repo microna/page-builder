@@ -47,14 +47,14 @@ function get_image_data($image, $fallback_alt = 'Content block') {
 
                 <!-- Secondary Title -->
                 <?php if ($text): ?>
-                <p class="fs-6 fs-md-5 lead fw-semibold mb-3">
+                <p class="fs-5 fs-md-5 lead fw-semibold mb-3">
                     <?php echo esc_html($text); ?>
                 </p>
                 <?php endif; ?>
 
                 <!-- Description -->
                 <?php if ($description): ?>
-                <p class="fs-6 fs-md-5 text-muted lh-base mx-auto" style="max-width: 700px;">
+                <p class="fs-5 text-muted lh-base mx-auto" style="max-width: 700px;">
                     <?php echo esc_html($description); ?>
                 </p>
                 <?php endif; ?>

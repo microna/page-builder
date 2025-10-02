@@ -4,6 +4,9 @@
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="<?php echo esc_attr(get_bloginfo('description')); ?>">
+    <title><?php wp_title('|', true, 'right'); ?><?php bloginfo('name'); ?></title>
+
     <?php wp_head(); ?>
 </head>
 

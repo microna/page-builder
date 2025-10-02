@@ -84,7 +84,7 @@ if (!$has_content) return;
 
                 <?php if (!empty($description) && is_string($description)): ?>
                 <div class="description-wrapper mx-auto" style="max-width: 700px;">
-                    <p class="fs-6 fs-md-5 lead text-muted lh-base mb-0 text-break">
+                    <p class="fs-5 lead text-muted lh-base mb-0 text-break">
                         <?php echo wp_kses_post($description); ?>
                     </p>
                 </div>

@@ -19,7 +19,7 @@ $placeholder_text = get_sub_field('placeholder_text') ?: 'Enter your name';
                     <?php endif; ?>
 
                     <?php if (!empty($description)): ?>
-                    <p class="fs-6 fs-md-5 mb-4 mb-md-5 text-muted lh-base">
+                    <p class="fs-5  mb-4 mb-md-5 text-muted lh-base">
                         <?php echo esc_html($description); ?>
                     </p>
                     <?php endif; ?>

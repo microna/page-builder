@@ -20,7 +20,7 @@ $button_url_secondary = get_sub_field('secondary_button_link');
                 <?php endif; ?>
 
                 <?php if ($description): ?>
-                <p class="fs-5 fs-md-5 fs-lg-4 mb-4 mb-md-5 text-muted lh-base">
+                <p class="fs-5 fs-lg-4 mb-4 mb-md-5 text-muted lh-base">
                     <?php echo esc_html($description); ?>
                 </p>
                 <?php endif; ?>

@@ -12,7 +12,7 @@ $button_url = get_sub_field('button_link');
                     <?php echo esc_html($text); ?>
                 </h1>
 
-                <p class="fs-5 fs-md-5 fs-lg-4 mb-4 mb-md-5 text-muted lh-base">
+                <p class="fs-5 fs-lg-4 mb-4 mb-md-5 text-muted lh-base">
                     <?php echo esc_html($description); ?>
                 </p>
                 <?php if ($button_text && $button_url): ?>

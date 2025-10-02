@@ -36,7 +36,7 @@ if ($image) {
                 <?php endif; ?>
 
                 <?php if ($description): ?>
-                <p class="fs-6 fs-md-5 mb-4 mb-md-5 text-muted lh-base">
+                <p class="fs-5 mb-4 mb-md-5 text-muted lh-base">
                     <?php echo esc_html($description); ?>
                 </p>
                 <?php endif; ?>

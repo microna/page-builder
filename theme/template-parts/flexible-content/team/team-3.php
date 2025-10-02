@@ -14,7 +14,7 @@ $member_3_image = get_sub_field('member_3_image') ?: $image;
 $member_3_name = get_sub_field('member_3_name') ?: 'Title is here';
 $member_3_description = get_sub_field('member_3_description') ?: 'Description - short description of the text';
 
-// Helper to get image URL - unique name to avoid conflicts
+// Helper function with proper check to prevent redefinition
 if (!function_exists('get_team_large_img_url')) {
     function get_team_large_img_url($img) {
         if (is_array($img) && isset($img['url'])) {

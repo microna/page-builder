@@ -50,7 +50,7 @@ $image_2_data = get_image_data_safe($block_2_image, 'Content block 2');
                 <?php endif; ?>
 
                 <?php if (!empty($description)): ?>
-                <p class="fs-6 fs-md-5 lead text-muted lh-base mx-auto" style="max-width: 700px;">
+                <p class="fs-5 lead text-muted lh-base mx-auto" style="max-width: 700px;">
                     <?php echo esc_html($description); ?>
                 </p>
                 <?php endif; ?>

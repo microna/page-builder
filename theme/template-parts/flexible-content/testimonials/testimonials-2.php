@@ -83,7 +83,7 @@ if (!function_exists('get_testimonials_centered_img_url')) {
                             <?php endif; ?>
 
                             <!-- Testimonial Text -->
-                            <p class="testimonial-text fs-6 lh-base text-muted mb-4">
+                            <p class="testimonial-text fs-5 lh-base text-muted mb-4">
                                 <?php echo esc_html($testimonial['content']); ?>
                             </p>
 

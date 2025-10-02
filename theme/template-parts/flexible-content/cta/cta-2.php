@@ -18,7 +18,7 @@ $button_url = get_sub_field('button_url') ?: '#';
                 <?php endif; ?>
 
                 <?php if (!empty($description)): ?>
-                <p class="fs-4 fs-md-5 mb-4 mb-md-5 text-muted lh-base">
+                <p class="fs-5  mb-4 mb-md-5 text-muted lh-base">
                     <?php echo esc_html($description); ?>
                 </p>
                 <?php endif; ?>

@@ -22,7 +22,7 @@ $default_advantages = [
 
 $advantages_data = $advantages ?: $default_advantages;
 
-function get_image_data($image, $fallback_alt = 'Advantage icon') {
+function get_advantage_image_data($image, $fallback_alt = 'Advantage icon') {
     if (!$image) return ['url' => '', 'alt' => $fallback_alt];
     
     if (is_array($image)) {
@@ -53,7 +53,7 @@ function get_image_data($image, $fallback_alt = 'Advantage icon') {
         <div class="row g-4 g-md-5 justify-content-center">
 
             <?php foreach ($advantages_data as $index => $advantage): 
-                $image_data = get_image_data($advantage['image'], 'Advantage ' . ($index + 1));
+                $image_data = get_advantage_image_data($advantage['image'], 'Advantage ' . ($index + 1));
             ?>
 
             <div class="col-12 col-md-6 col-lg-4">

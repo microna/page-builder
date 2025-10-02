@@ -20,7 +20,7 @@ if ($image) {
         <div class="row">
             <div class="col-12 text-center mb-5">
                 <h2 class="display-4 display-md-3 fw-bold mb-3 mb-md-4">Title - main idea of the text</h2>
-                <p class="fs-6 fs-md-5 lead text-muted">
+                <p class="fs-5  lead text-muted">
                     Description - short description of the text
                 </p>
             </div>

@@ -45,7 +45,7 @@ if (!function_exists('get_testimonial_img_url')) {
                 <h2 class="display-5 display-md-4 fw-bold mb-3">
                     <?php echo esc_html($section_title); ?>
                 </h2>
-                <p class="fs-6 fs-md-5 lead text-muted lh-base">
+                <p class="fs-5 lead text-muted lh-base">
                     <?php echo esc_html($section_description); ?>
                 </p>
             </div>

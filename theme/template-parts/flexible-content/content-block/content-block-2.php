@@ -46,7 +46,7 @@ $image_2_data = get_image_data_safe($block_image_2, 'Content block 2');
 
                 <?php if (!empty($description)): ?>
                 <div class="description-wrapper mx-auto" style="max-width: 700px;">
-                    <p class="fs-6 fs-md-5 lead text-muted lh-base mb-0">
+                    <p class="fs-5 ead text-muted lh-base mb-0">
                         <?php echo esc_html($description); ?>
                     </p>
                 </div>

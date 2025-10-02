@@ -478,3 +478,13 @@ a:hover {
 <?php
 }
 add_action('wp_head', 'page_builder_dark_theme_css', 100);
+
+/**
+ * Simple test to see if hooks are working
+ */
+function test_hooks_working() {
+    if (current_user_can('administrator') && isset($_GET['debug_fonts'])) {
+        echo '<!-- DEBUG: test_hooks_working() called -->';
+    }
+}
+add_action('wp_head', 'test_hooks_working', 1);

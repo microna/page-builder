@@ -61,7 +61,7 @@ $args = array(
     'menu_icon'            => 'dashicons-admin-generic',
     'save_defaults'        => true,
     'default_show'         => false,
-    'show_import_export'   => true,
+    'show_import_export'   => false,
     
     // Disable problematic features
     'dev_mode'             => false,
@@ -97,8 +97,8 @@ Redux::setSection($opt_name, array(
             'id'       => 'site_title',
             'type'     => 'text',
             'title'    => __('Site Title', 'page-builder'),
-            'subtitle' => __('Enter your site title', 'page-builder'),
-            'default'  => get_bloginfo('name'),
+            'subtitle' => __('Enter your site title (leave empty to use WordPress site name)', 'page-builder'),
+            'default'  => '', // Empty default
         ),
     )
 ));
@@ -203,7 +203,13 @@ Redux::setSection($opt_name, array(
 function page_builder_simple_option($key, $default = '') {
     // Check if Redux is available
     if (class_exists('Redux')) {
-        return Redux::getOption('page_builder_simple_options', $key, $default);
+        // Use the new method for Redux 4.3+
+        if (method_exists('Redux', 'get_option')) {
+            return Redux::get_option('page_builder_simple_options', $key, $default);
+        } else {
+            // Fallback for older Redux versions
+            return Redux::getOption('page_builder_simple_options', $key, $default);
+        }
     }
     
     // Fallback to simple options when Redux is not available
@@ -216,53 +222,7 @@ function page_builder_simple_option($key, $default = '') {
     return isset($page_builder_simple_options[$key]) ? $page_builder_simple_options[$key] : $default;
 }
 
-/**
- * SECTION 4: LAYOUT SETTINGS
- */
-Redux::setSection($opt_name, array(
-    'title' => __('Layout', 'page-builder'),
-    'id'    => 'layout',
-    'desc'  => __('Layout and container settings', 'page-builder'),
-    'icon'  => 'el el-screen',
-    'fields' => array(
-        array(
-            'id'       => 'container_width',
-            'type'     => 'select',
-            'title'    => __('Container Width', 'page-builder'),
-            'subtitle' => __('Choose the maximum width for your content', 'page-builder'),
-            'options'  => array(
-                'container-fluid' => 'Full Width (100%)',
-                'container' => 'Bootstrap Container (1200px)',
-                'container-sm' => 'Small Container (576px)',
-                'container-md' => 'Medium Container (768px)',
-                'container-lg' => 'Large Container (992px)',
-                'container-xl' => 'Extra Large Container (1140px)',
-            ),
-            'default'  => 'container',
-        ),
-        array(
-            'id'       => 'header_sticky',
-            'type'     => 'switch',
-            'title'    => __('Sticky Header', 'page-builder'),
-            'subtitle' => __('Enable sticky header navigation', 'page-builder'),
-            'default'  => false,
-        ),
-        array(
-            'id'       => 'footer_style',
-            'type'     => 'select',
-            'title'    => __('Footer Style', 'page-builder'),
-            'subtitle' => __('Choose footer layout style', 'page-builder'),
-            'options'  => array(
-                'footer-1' => 'Footer Style 1',
-                'footer-2' => 'Footer Style 2',
-                'footer-3' => 'Footer Style 3',
-                'footer-4' => 'Footer Style 4',
-                'footer-5' => 'Footer Style 5',
-            ),
-            'default'  => 'footer-1',
-        ),
-    )
-));
+
 
 /**
  * SECTION 5: SOCIAL MEDIA

@@ -20,7 +20,7 @@
                         'fallback_cb' => false,
                     )); ?>
 
-            <button class="burger">
+            <button class="burger" aria-label="Open navigation menu">
                 <span></span>
             </button>
         </div>

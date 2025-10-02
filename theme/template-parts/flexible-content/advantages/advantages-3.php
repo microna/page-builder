@@ -46,7 +46,7 @@ $advantages = [
             </div>
 
             <div class="col-12 col-lg-6">
-                <p class="fs-6 fs-md-5 lead text-muted lh-base mb-0">
+                <p class="fs-5 lead text-muted lh-base mb-0">
                     <?php echo esc_html($main_description); ?>
                 </p>
             </div>
