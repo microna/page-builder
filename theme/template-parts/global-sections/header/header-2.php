@@ -19,6 +19,7 @@
                     $redux_logo = page_builder_simple_option('logo');
                     $logo_url = !empty($redux_logo['url']) ? $redux_logo['url'] : get_template_directory_uri() . '/assets/images/logo.png';
                     ?>
+
                     <img src="<?php echo esc_url($logo_url); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" />
                 </a>
             </div>
